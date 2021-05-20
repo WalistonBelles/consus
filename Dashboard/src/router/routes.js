@@ -7,7 +7,7 @@ const Dashboard = () => import(/* webpackChunkName: "dashboard" */"@/pages/Dashb
 const Profile = () => import(/* webpackChunkName: "common" */ "@/pages/Profile.vue");
 const Login = () => import(/* webpackChunkName: "common" */"@/pages/Login.vue");
 const Register = () => import(/* webpackChunkName: "common" */ "@/pages/Register.vue");
-const Maps = () => import(/* webpackChunkName: "common" */ "@/pages/Maps.vue");
+const Role = () => import(/* webpackChunkName: "common" */ "@/pages/Role.vue");
 const Typography = () => import(/* webpackChunkName: "common" */ "@/pages/Typography.vue");
 const TableList = () => import(/* webpackChunkName: "common" */ "@/pages/TableList.vue");
 
@@ -38,9 +38,9 @@ const routes = [
         component: Register
       },
       {
-        path: "maps",
-        name: "maps",
-        component: Maps
+        path: "role",
+        name: "role",
+        component: Role
       },
       {
         path: "typography",
