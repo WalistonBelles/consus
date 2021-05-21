@@ -1,10 +1,12 @@
 var User = require("../models/User");
 var PasswordToken = require("../models/PasswordToken");
 var jwt = require("jsonwebtoken");
+var AdressController = require("../controllers/AdressController");
 
 var secret = "adsuasgdhjasgdhjdgahjsg12hj3eg12hj3g12hj3g12hj3g123";
 
 var bcrypt = require("bcrypt");
+var axios = require("axios");
 
 class UserController{
     async index(req, res){
@@ -25,10 +27,8 @@ class UserController{
     }
 
     async create(req, res){
-        var {email, nome, senha, nascimento, cpf, telefone, sus_card, rg} = req.body;
-        var {cidade, cep, rua, bairro, numero, ponto_de_referencia} = req.body;
-        var endereco = 0;
-
+        var {email, nome, senha, nascimento, cpf, telefone, sus_card, rg, pais, cidade, cep, rua, bairro, numero, ponto_de_referencia} = req.body;
+        
         // Valida Nome
         if(nome == undefined  || nome == '' || nome == ' '){
             res.status(400);
@@ -85,10 +85,19 @@ class UserController{
             res.json({err: "O e-mail já está cadastrado!"})
             return;
         }
-        await User.new(nome, senha, nascimento, cpf, telefone, sus_card, rg, email);
-        
+        var result = await AdressController.create(pais, cidade, cep, rua, bairro, numero, ponto_de_referencia);
+        if (result.err != undefined){
+            res.status(400)
+            res.send(result.err);
+        }
+        if(result.endereco != "Erro"){
+            await User.new(nome, senha, nascimento, cpf, telefone, sus_card, rg, email, result.endereco);
+        }else{
+            res.status(400)
+            res.send(result.err);
+        }
         res.status(200);
-        res.send("Tudo OK!");
+        res.send("Cadastrado com sucesso!");
     }
 
     async edit(req, res){
