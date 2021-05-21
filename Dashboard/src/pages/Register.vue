@@ -23,15 +23,15 @@
                 </div>
                 <div class="form-row">
                     <base-input class="col-md-3" label="Selecione o Pais">
-                            <select id="inputState" class="form-control">
+                            <select id="inputState" class="form-control" v-model="pais">
                                 <option selected>Selecionar...</option>
                                 <option>Brasil</option>
                                 <option>Uruguai</option>
                                 <option>Estados Unidos</option>
                             </select>
                     </base-input>
-                    <base-input class="col-md-3" type="text" label="CEP" placeholder="CEP" v-model="cep"/>
                     <base-input class="col-md-3" type="text" label="Cidade" placeholder="Cidade" v-model="cidade"/>
+                    <base-input class="col-md-3" type="text" label="CEP" placeholder="CEP" v-model="cep"/>
                     <base-input class="col-md-3" type="text" label="Rua" placeholder="Rua" v-model="rua"/>
                     <base-input class="col-md-4" type="text" label="Bairro" placeholder="Bairro" v-model="bairro"/>
                     <base-input class="col-md-4" type="text" label="Número" placeholder="Número" v-model="numero"/>
@@ -58,6 +58,7 @@ export default {
             telefone: '', 
             sus_card: '',
             rg: '',
+            pais: '',
             cidade: '', 
             cep: '', 
             rua: '', 
@@ -76,16 +77,21 @@ export default {
     methods: {
         register(){
             axios.post("http://localhost:3000/user",{
-                name: this.name,
-                password: this.password,
-                dataNascimento: this.dataNascimento,
+                nome: this.name,
+                senha: this.password,
+                nascimento: this.dataNascimento,
                 cpf: this.cpf,
                 telefone: this.telefone,
                 sus_card: this.sus_card,
                 rg: this.rg,
                 email: this.email,
-                cargo: this.cargo,
-                endereco: this.endereco
+                pais: this.pais,
+                cidade: this.cidade,
+                cep: this.cep,
+                rua: this.rua,
+                bairro: this.bairro,
+                numero: this.numero,
+                ponto_de_referencia: this.ponto_de_referencia,
             }).then(res => {
                 console.log(res);
                 this.$router.push({name: 'dashboard'});

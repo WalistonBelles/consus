@@ -6,6 +6,7 @@
         <sidebar-link to="/register" :name="$t('register')" icon="tim-icons icon-notes"/>
         <sidebar-link to="/login" :name="$t('login')" icon="tim-icons icon-single-02"/>
         <sidebar-link to="/role" :name="$t('role')" icon="tim-icons icon-single-02"/>
+        <sidebar-link to="/specialty" :name="$t('Especialidade')" icon="tim-icons icon-single-02"/>
       </template>
     </side-bar>
     <div class="main-panel">

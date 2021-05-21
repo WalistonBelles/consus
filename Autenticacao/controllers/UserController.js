@@ -6,7 +6,6 @@ var AdressController = require("../controllers/AdressController");
 var secret = "adsuasgdhjasgdhjdgahjsg12hj3eg12hj3g12hj3g12hj3g123";
 
 var bcrypt = require("bcrypt");
-var axios = require("axios");
 
 class UserController{
     async index(req, res){
@@ -79,20 +78,38 @@ class UserController{
         }
 
         var emailExists = await User.findEmail(email);
+        var cpfExists = await User.findCPF(cpf);
+        var rgExists = await User.findRG(rg);
 
+        if(cpfExists){
+            res.status(406);
+            res.json({err: "O CPF já está cadastrado!"})
+            return;
+        }
+        if(rgExists){
+            res.status(406);
+            res.json({err: "O RG já está cadastrado!"})
+            return;
+        }
         if(emailExists){
             res.status(406);
             res.json({err: "O e-mail já está cadastrado!"})
             return;
         }
+        console.log('Passou na linha 99');
         var result = await AdressController.create(pais, cidade, cep, rua, bairro, numero, ponto_de_referencia);
         if (result.err != undefined){
+            console.log('Passou na linha 102' + result.err);
             res.status(400)
-            res.send(result.err);
+            res.json({err: result.err});
+            return;
         }
+        console.log('Passou na linha 106');
         if(result.endereco != "Erro"){
+            console.log('Passou na linha 108' + result.endereco);
             await User.new(nome, senha, nascimento, cpf, telefone, sus_card, rg, email, result.endereco);
         }else{
+            console.log('Passou na linha 111');
             res.status(400)
             res.send(result.err);
         }

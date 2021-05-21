@@ -8,8 +8,7 @@ const Profile = () => import(/* webpackChunkName: "common" */ "@/pages/Profile.v
 const Login = () => import(/* webpackChunkName: "common" */"@/pages/Login.vue");
 const Register = () => import(/* webpackChunkName: "common" */ "@/pages/Register.vue");
 const Role = () => import(/* webpackChunkName: "common" */ "@/pages/Role.vue");
-const Typography = () => import(/* webpackChunkName: "common" */ "@/pages/Typography.vue");
-const TableList = () => import(/* webpackChunkName: "common" */ "@/pages/TableList.vue");
+const Specialty = () => import(/* webpackChunkName: "common" */ "@/pages/Specialty.vue");
 
 const routes = [
   {
@@ -43,14 +42,9 @@ const routes = [
         component: Role
       },
       {
-        path: "typography",
-        name: "typography",
-        component: Typography
-      },
-      {
-        path: "table-list",
-        name: "table-list",
-        component: TableList
+        path: "specialty",
+        name: "specialty",
+        component: Specialty
       }
     ]
   },

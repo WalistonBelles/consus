@@ -32,7 +32,38 @@ class User{
 
     async findByEmail(email){
         try{
-            var result = await knex.select(["id","email","password","role","name"]).where({email:email}).table("usuario");
+            var result = await knex.select(["id","email"]).where({email:email}).table("usuario");
+            
+            if(result.length > 0){
+                return result[0];
+            }else{
+                return undefined;
+            }
+
+        }catch(err){
+            console.log(err);
+            return undefined;
+        }
+    }
+
+    async findCPF(cpf){
+        try{
+            var result = await knex.select(["id","cpf"]).where({cpf:cpf}).table("usuario");
+            
+            if(result.length > 0){
+                return result[0];
+            }else{
+                return undefined;
+            }
+
+        }catch(err){
+            console.log(err);
+            return undefined;
+        }
+    }
+    async findRG(rg){
+        try{
+            var result = await knex.select(["id","rg"]).where({rg:rg}).table("usuario");
             
             if(result.length > 0){
                 return result[0];
