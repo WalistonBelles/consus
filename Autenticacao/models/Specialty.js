@@ -1,5 +1,15 @@
 var knex = require("../database/connection");
 class Specialty {
+    // Retorna todas as especialidades cadastradas
+    async findAll(){
+        try{
+            var result = await knex.select(["id","nome"]).table("especialidade");
+            return result;
+        }catch(err){
+            console.log(err);
+            return [];
+        }
+    }
     // Adicionar nova especialidade
     async new(nome){
         try{

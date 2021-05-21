@@ -1,6 +1,10 @@
 var Specialty = require("../models/Specialty");
 
 class SpecialtyController{
+    async index(req, res){
+        var specialtys = await Specialty.findAll();
+        res.json(specialtys);
+    }
     async create(req, res){
         var {nome} = req.body;
 

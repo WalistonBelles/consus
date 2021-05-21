@@ -2,11 +2,12 @@
   <div class="wrapper">
     <side-bar>
       <template slot="links">
-        <sidebar-link to="/dashboard" :name="$t('sidebar.dashboard')" icon="tim-icons icon-chart-pie-36"/>
-        <sidebar-link to="/register" :name="$t('register')" icon="tim-icons icon-notes"/>
-        <sidebar-link to="/login" :name="$t('login')" icon="tim-icons icon-single-02"/>
-        <sidebar-link to="/role" :name="$t('role')" icon="tim-icons icon-single-02"/>
-        <sidebar-link to="/specialty" :name="$t('Especialidade')" icon="tim-icons icon-single-02"/>
+        <sidebar-link to="/dashboard" :name="$t('Painel Administrativo')" icon="tim-icons icon-chart-pie-36"/>
+        <sidebar-link to="/register" :name="$t('Cadastrar Usuário')" icon="tim-icons icon-notes"/>
+        <sidebar-link to="/login" :name="$t('Login')" icon="tim-icons icon-single-02"/>
+        <sidebar-link to="/role" :name="$t('Adicionar Cargo')" icon="tim-icons icon-single-02"/>
+        <sidebar-link to="/specialty" :name="$t('Adicionar Especialidade')" icon="tim-icons icon-single-02"/>
+        <sidebar-link to="/doctor" :name="$t('Adicionar Médico')" icon="tim-icons icon-single-02"/>
       </template>
     </side-bar>
     <div class="main-panel">

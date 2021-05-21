@@ -3,12 +3,13 @@ import DashboardLayout from "@/layout/dashboard/DashboardLayout.vue";
 import NotFound from "@/pages/NotFoundPage.vue";
 
 // Admin pages
-const Dashboard = () => import(/* webpackChunkName: "dashboard" */"@/pages/Dashboard.vue");
-const Profile = () => import(/* webpackChunkName: "common" */ "@/pages/Profile.vue");
-const Login = () => import(/* webpackChunkName: "common" */"@/pages/Login.vue");
-const Register = () => import(/* webpackChunkName: "common" */ "@/pages/Register.vue");
-const Role = () => import(/* webpackChunkName: "common" */ "@/pages/Role.vue");
-const Specialty = () => import(/* webpackChunkName: "common" */ "@/pages/Specialty.vue");
+const Dashboard = () => import("@/pages/Dashboard.vue");
+const Profile = () => import("@/pages/Profile.vue");
+const Login = () => import("@/pages/Login.vue");
+const Register = () => import("@/pages/Register.vue");
+const Role = () => import("@/pages/Role.vue");
+const Specialty = () => import("@/pages/Specialty.vue");
+const Doctor = () => import("@/pages/Doctor.vue");
 
 const routes = [
   {
@@ -45,7 +46,12 @@ const routes = [
         path: "specialty",
         name: "specialty",
         component: Specialty
-      }
+      },
+      {
+        path: "doctor",
+        name: "doctor",
+        component: Doctor
+      },
     ]
   },
   { path: "*", component: NotFound },

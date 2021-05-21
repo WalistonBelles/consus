@@ -6,7 +6,7 @@ class User{
 
     async findAll(){
         try{
-            var result = await knex.select(["id","email","role","name"]).table("usuario");
+            var result = await knex.select(["id","nome","nascimento","cpf", "email", "telefone", "sus_card", "rg", "cargo"]).table("usuario");
             return result;
         }catch(err){
             console.log(err);
@@ -132,6 +132,30 @@ class User{
 
             try{
                 await knex.update(editUser).where({id: id}).table("usuario");
+                return {status: true}
+            }catch(err){
+                return {status: false,err: err}
+            }
+            
+        }else{
+            return {status: false,err: "O usuário não existe!"}
+        }
+    }
+
+    async updateCargo(cpf, cargo){
+
+        var user = await this.findCPF(cpf);
+
+        if(user != undefined){
+
+            var editUser = {};
+
+            if(cargo != undefined){
+                editUser.cargo = cargo;
+            }
+
+            try{
+                await knex.update(editUser).where({id: user.id}).table("usuario");
                 return {status: true}
             }catch(err){
                 return {status: false,err: err}

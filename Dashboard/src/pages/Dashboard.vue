@@ -5,6 +5,10 @@
           <thead>
               <tr>
               <th>Nome</th>
+              <th>Nascimento</th>
+              <th>CPF</th>
+              <th>Telefone</th>
+              <th>Sus_Card</th>
               <th>E-mail</th>
               <th>Cargo</th>
               <th>Ações</th>
@@ -12,9 +16,13 @@
           </thead>
           <tbody>
               <tr v-for="user in users" :key="user.id">
-                  <td>{{user.name}}</td>
+                  <td>{{user.nome}}</td>
+                  <td>{{user.nascimento}}</td>
+                  <td>{{user.cpf}}</td>
+                  <td>{{user.telefone}}</td>
+                  <td>{{user.sus_card}}</td>
                   <td>{{user.email}}</td>
-                  <td>{{ user.role | processRole }}</td>
+                  <td>{{user.cargo}}</td>
                   <td>
                       <router-link :to="{name: 'UserEdit', params:{id: user.id}}">
                         <base-button type="success" size="sm" icon>

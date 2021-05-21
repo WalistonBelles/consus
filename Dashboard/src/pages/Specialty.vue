@@ -10,7 +10,7 @@
                     </base-alert>
                 </div>
                 <div class="form-row">
-                    <base-input class="col-md-6" type="text" label="Nome" placeholder="Nome da especialidade" v-model="nome"/>
+                    <base-input class="col-md-6" type="text" label="Nome da Especialidade" placeholder="Nome da especialidade" v-model="nome"/>
                 </div>
                 <base-button class="animation-on-hover" type="success" @click="register">Cadastrar</base-button>
             </form>

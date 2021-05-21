@@ -6,6 +6,7 @@ var UserController = require("../controllers/UserController");
 var RoleController = require("../controllers/RoleController");
 var AdressController = require("../controllers/AdressController");
 var SpecialtyController = require("../controllers/SpecialtyController");
+var DoctorController = require("../controllers/DoctorController");
 var AdminAuth = require("../middleware/AdminAuth");
 
 router.get('/', HomeController.index);
@@ -20,6 +21,8 @@ router.post("/login",UserController.login);
 router.post("/validate", AdminAuth,HomeController.validate);
 router.post("/role", RoleController.create);
 router.post("/adress", AdressController.create);
-router.post("/specialty", SpecialtyController.create);
+router.get("/specialty", SpecialtyController.index);
+router.post("/doctor", DoctorController.create);
+router.get("/user",AdminAuth,UserController.index);
 
 module.exports = router;
