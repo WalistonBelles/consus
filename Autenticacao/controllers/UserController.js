@@ -176,33 +176,22 @@ class UserController{
 
     async login(req, res){
         var {email, password } = req.body;
-
         var user = await User.findByEmail(email);
-
         if(user != undefined){
-
-            var resultado = await bcrypt.compare(password,user.password);
-
+            var resultado = await bcrypt.compare(password,user.senha);
             if(resultado){
-
-                var token = jwt.sign({ email: user.email, role: user.role }, secret);
-
+                var token = jwt.sign({ email: user.email, cargo: user.cargo }, secret);
                 res.status(200);
                 res.json({token: token});
-
             }else{
                 res.status(406);
                 res.json({err: "Senha incorreta"});
             }
-
         }else{
-
             res.status(406);
             res.json({status: false, err: "O usuário não existe!"});
-
         }
     }
-
 }
 
 module.exports = new UserController();

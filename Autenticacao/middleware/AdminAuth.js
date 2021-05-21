@@ -11,7 +11,7 @@ module.exports = function(req, res, next){
         try{
             var decoded = jwt.verify(token,secret);
             
-            if(decoded.role == 3){
+            if(decoded.cargo == "Administrador"){
                 next();
             }else{
                 res.status(403);
