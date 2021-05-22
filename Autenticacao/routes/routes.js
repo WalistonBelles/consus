@@ -7,6 +7,8 @@ var RoleController = require("../controllers/RoleController");
 var AdressController = require("../controllers/AdressController");
 var SpecialtyController = require("../controllers/SpecialtyController");
 var DoctorController = require("../controllers/DoctorController");
+var ScheduleController = require("../controllers/ScheduleController");
+var RequestingUnitController = require("../controllers/RequestingUnitController");
 var AdminAuth = require("../middleware/AdminAuth");
 
 router.get('/', HomeController.index);
@@ -24,5 +26,7 @@ router.post("/adress", AdressController.create);
 router.get("/specialty", SpecialtyController.index);
 router.post("/doctor", DoctorController.create);
 router.get("/user",AdminAuth,UserController.index);
+router.post("/schedule", ScheduleController.create);
+router.get("/requestingUnit", RequestingUnitController.index);
 
 module.exports = router;

@@ -1,65 +1,32 @@
 <template>
     <div style="text-align: center;">
         <h1>Painel Adm!</h1>
-        <table class="table" border="1">
-          <thead>
-              <tr>
-              <th>Nome</th>
-              <th>Nascimento</th>
-              <th>CPF</th>
-              <th>Telefone</th>
-              <th>Sus_Card</th>
-              <th>E-mail</th>
-              <th>Cargo</th>
-              <th>Ações</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr v-for="user in users" :key="user.id">
-                  <td>{{user.nome}}</td>
-                  <td>{{user.nascimento}}</td>
-                  <td>{{user.cpf}}</td>
-                  <td>{{user.telefone}}</td>
-                  <td>{{user.sus_card}}</td>
-                  <td>{{user.email}}</td>
-                  <td>{{user.cargo}}</td>
-                  <td>
-                      <router-link :to="{name: 'UserEdit', params:{id: user.id}}">
-                        <base-button type="success" size="sm" icon>
-                          <i class="tim-icons icon-settings"></i>
-                        </base-button>
-                      </router-link> | 
-                      <base-button type="danger" size="sm" icon @click="showModalUser(user.id)">
-                        <i class="tim-icons icon-simple-remove"></i>
-                      </base-button>
-                  </td>
-              </tr>
-          </tbody>
-        </table>
-        <div :class="{modal: true, 'is-active': showModal}">
-            <div class="modal-background"></div>
-            <div class="modal-content">
-                
-                <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                    Você quer realmente deletar este usuário?
-                    </p>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        <p>BLA BLA BLA!</p>
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a href="#" class="card-footer-item" @click="hideModal()">Cancelar</a>
-                    <a href="#" class="card-footer-item" @click="deleteUser()">Sim, quero deletar!</a>
-                </footer>
-                </div>
+        <card type="user">
+            <div class="author">
+            <div class="block block-one"></div>
+            <div class="block block-two"></div>
+            <div class="block block-three"></div>
+            <div class="block block-four"></div>
+            <a href="#">
+                <img class="avatar" src="img/anime6.png" alt="...">
+            </a>
+            <p class="description">
+                Administrador
+            </p>
             </div>
-            <button class="modal-close is-large" aria-label="close" @click="hideModal()"></button>
-        </div>
+            <p></p>
+            <p class="card-description">
+            </p>
+                <div slot="footer" class="button-container">
+                <a href="#/register"><base-button simple type="primary"><i class="tim-icons icon-single-02"></i> Cadastrar Usuário</base-button></a>
+                <a href="#/role"><base-button simple type="primary"><i class="tim-icons icon-simple-add"></i>  Cadastrar Cargo</base-button></a>
+                <a href="#/specialty"><base-button simple type="primary"><i class="tim-icons icon-simple-add"></i>  Cadastrar Nova Especialidade</base-button></a>
+                <a href="#/doctor"><base-button simple type="primary"><i class="tim-icons icon-simple-add"></i>  Cadastrar Nova Especialidade para um Médico</base-button></a>
+                <a href="#/schedule"><base-button simple type="primary"><i class="tim-icons icon-simple-add"></i>  Agenda</base-button></a>
+            </div>
+        </card>
     </div>    
+    
 </template>
 
 <script>

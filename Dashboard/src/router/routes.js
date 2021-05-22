@@ -10,6 +10,7 @@ const Register = () => import("@/pages/Register.vue");
 const Role = () => import("@/pages/Role.vue");
 const Specialty = () => import("@/pages/Specialty.vue");
 const Doctor = () => import("@/pages/Doctor.vue");
+const Schedule = () => import("@/pages/Schedule.vue");
 
 const routes = [
   {
@@ -51,6 +52,11 @@ const routes = [
         path: "doctor",
         name: "doctor",
         component: Doctor
+      },
+      {
+        path: "schedule",
+        name: "schedule",
+        component: Schedule
       },
     ]
   },
