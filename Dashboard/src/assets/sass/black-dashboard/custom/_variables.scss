@@ -117,10 +117,10 @@ $info-states:          #3358f4 !default;
 $warning-states:       #ff6491 !default;
 $danger-states:        #ec250d !default;
 $black-states:         #1d253b !default;
-$vue-states:           #389466 !default;
+$vue-states:           #0CF5B6 !default;
 
-$background-black:           #1e1e2f !default;
-$background-states-black:    #1e1e24 !default;
+$background-black:           #0971DE !default;
+$background-states-black:    #26C5DE !default;
 
 // opacity
 $default-opacity:      rgba(182, 182, 182, .6) !default;
@@ -346,7 +346,7 @@ $margin-bottom:                 10px        !default;
 $border:                        1px solid   !default;
 
 $box-shadow-sm:               0 .125rem .25rem rgba($black, .075);
-$box-shadow:                  0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
+$box-shadow:                  0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(252, 4, 4, 1);
 $box-shadow-lg:               0 1rem 3rem rgba($black, .175);
 
 $dropdown-shadow:          1px 2px 3px 0px rgba(0, 0, 0, 0.125);
@@ -899,7 +899,7 @@ $card-border-color:                 rgba($black, .05);
 $card-inner-border-radius:          calc(#{$card-border-radius} - #{$card-border-width});
 $card-cap-bg:                       $gray-100 !default;
 $card-bg:                           $white !default;
-$card-black-background:             #27293d !default;
+$card-black-background:             #075EE0 !default;
 $card-img-overlay-padding:          1.25rem !default;
 
 //$card-group-margin:                 ($grid-gutter-width / 2);

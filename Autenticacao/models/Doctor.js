@@ -1,5 +1,14 @@
 var knex = require("../database/connection");
 class Doctor {
+    async findAll(){
+        try{
+            var result = await knex.select(["id","crm","especialidade","id_usuario"]).table("medico");
+            return result;
+        }catch(err){
+            console.log(err);
+            return [];
+        }
+    }
     // Adiciona novo médico
     async new(crm, especialidade, id_usuario){
         try{

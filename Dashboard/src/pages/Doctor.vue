@@ -12,7 +12,7 @@
                 <div class="form-row">
                     <base-input class="col-md-6" type="text" label="CRM do Médico" placeholder="CRM do Médico" v-model="crm"/>
                     <base-input class="col-md-6" type="text" label="CPF do Médico" placeholder="CPF do Médico" v-model="cpf"/>
-                    <base-input class="col-md-3" label="Selecione o Pais">
+                    <base-input class="col-md-3" label="Selecione a Especialidade">
                       <select id="inputState" class="form-control" v-model="especialidade">
                         <option selected>Selecionar...</option>
                         <option v-for="speciality in specialitys" :key="speciality.id">{{speciality.nome}}</option>

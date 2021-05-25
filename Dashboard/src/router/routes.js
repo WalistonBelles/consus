@@ -11,6 +11,7 @@ const Role = () => import("@/pages/Role.vue");
 const Specialty = () => import("@/pages/Specialty.vue");
 const Doctor = () => import("@/pages/Doctor.vue");
 const Schedule = () => import("@/pages/Schedule.vue");
+const ConsultationHistory = () => import("@/pages/querys/ConsultationHistory.vue");
 
 const routes = [
   {
@@ -57,6 +58,11 @@ const routes = [
         path: "schedule",
         name: "schedule",
         component: Schedule
+      },
+      {
+        path: "querys/consultationHistory",
+        name: "consultationHistory",
+        component: ConsultationHistory
       },
     ]
   },

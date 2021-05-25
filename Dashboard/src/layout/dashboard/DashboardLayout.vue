@@ -4,6 +4,7 @@
       <template slot="links">
         <sidebar-link to="/dashboard" :name="$t('Painel Administrativo')" icon="tim-icons icon-chart-pie-36"/>
         <sidebar-link to="/login" :name="$t('Login')" icon="tim-icons icon-single-02"/>
+        <sidebar-link to="querys/consultationHistory" :name="$t('Consultar Histórico')" icon="tim-icons icon-single-02"/>
       </template>
     </side-bar>
     <div class="main-panel">

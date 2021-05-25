@@ -1,32 +1,83 @@
 <template>
     <div style="text-align: center;">
         <h1>Painel Adm!</h1>
-        <card type="user">
-            <div class="author">
-            <div class="block block-one"></div>
-            <div class="block block-two"></div>
-            <div class="block block-three"></div>
-            <div class="block block-four"></div>
-            <a href="#">
-                <img class="avatar" src="img/anime6.png" alt="...">
-            </a>
-            <p class="description">
-                Administrador
-            </p>
+        
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-bg-green">Usuários</div>
+                    <div class="card-body">
+                        <p class="card-text"> <i class="tim-icons icon-single-02"></i> {{users.length}}</p>
+                    </div>
+                </div>
             </div>
-            <p></p>
-            <p class="card-description">
-            </p>
-                <div slot="footer" class="button-container">
-                <a href="#/register"><base-button simple type="primary"><i class="tim-icons icon-single-02"></i> Cadastrar Usuário</base-button></a>
-                <a href="#/role"><base-button simple type="primary"><i class="tim-icons icon-simple-add"></i>  Cadastrar Cargo</base-button></a>
-                <a href="#/specialty"><base-button simple type="primary"><i class="tim-icons icon-simple-add"></i>  Cadastrar Nova Especialidade</base-button></a>
-                <a href="#/doctor"><base-button simple type="primary"><i class="tim-icons icon-simple-add"></i>  Cadastrar Nova Especialidade para um Médico</base-button></a>
-                <a href="#/schedule"><base-button simple type="primary"><i class="tim-icons icon-simple-add"></i>  Agenda</base-button></a>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-bg-green">Médicos</div>
+                    <div class="card-body">
+                        <p class="card-text">{{doctors.length}}</p>
+                    </div>
+                </div>
             </div>
-        </card>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-bg-green">Consultas</div>
+                    <div class="card-body">
+                        <p class="card-text">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-header">Usuários</div>
+                    <div class="card-body">
+                        <p class="card-text">Cadastrar um novo usuário.</p>
+                        <a href="#/register"><base-button type="success"><i class="tim-icons icon-single-02"></i> Usuário</base-button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-header">Cargo</div>
+                    <div class="card-body">
+                        <p class="card-text">Cadastrar um novo cargo.</p>
+                        <a href="#/role"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Cargo</base-button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-header">Especialidade</div>
+                    <div class="card-body">
+                        <p class="card-text">Cadastrar nova especialidade.</p>
+                        <a href="#/specialty"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Especialidade</base-button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-header">Médico</div>
+                    <div class="card-body">
+                        <p class="card-text">Adicionar novo médico.</p>
+                        <a href="#/doctor"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Médico</base-button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-header">Agenda</div>
+                    <div class="card-body">
+                        <p class="card-text">Cadastrar nova consulta.</p>
+                        
+                    </div>
+                    <div class="card-footer"><a href="#/schedule"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Agenda</base-button></a></div>
+                </div>
+            </div>
+        </div>
     </div>    
-    
 </template>
 
 <script>
@@ -48,11 +99,20 @@ export default {
             console.log("Deu Erro");
             console.log(err);
         })
+        axios.get("http://localhost:3000/doctor",req).then(res => {
+            console.log("Nao Deu Erro");
+            console.log(res);
+            this.doctors = res.data;
+        }).catch(err => {
+            console.log("Deu Erro");
+            console.log(err);
+        })
     },
     data()
     {
         return {
             users: [],
+            doctors: [],
             showModal: false,
             deleteUserId: -1
         }

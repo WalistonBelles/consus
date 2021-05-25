@@ -2,8 +2,8 @@
   "name": "vue-black-dashboard",
   "version": "1.0.0",
   "private": true,
-  "description": "A sample admin dashboard based on black dashboard UI template",
-  "author": "cristian.jora <joracristi@gmail.com>",
+  "description": "",
+  "author": "waliston.belles <walistonbelles@gmail.com>",
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",

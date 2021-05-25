@@ -3,6 +3,10 @@ var Specialty = require("../models/Specialty");
 var User = require("../models/User");
 
 class DoctorController{
+    async index(req, res){
+        var doctors = await Doctor.findAll();
+        res.json(doctors);
+    }
     async create(req, res){
         var {crm, especialidade, cpf} = req.body;
 
