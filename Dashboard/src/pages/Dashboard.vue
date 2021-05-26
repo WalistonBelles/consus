@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-bg-green">Consultas</div>
                     <div class="card-body">
-                        <p class="card-text">0</p>
+                        <p class="card-text">{{schedules.length}}</p>
                     </div>
                 </div>
             </div>
@@ -92,19 +92,19 @@ export default {
             }
         }
         axios.get("http://localhost:3000/user",req).then(res => {
-            console.log("Nao Deu Erro");
-            console.log(res);
             this.users = res.data;
         }).catch(err => {
-            console.log("Deu Erro");
             console.log(err);
+            this.$router.push({name: 'login'});
         })
         axios.get("http://localhost:3000/doctor",req).then(res => {
-            console.log("Nao Deu Erro");
-            console.log(res);
             this.doctors = res.data;
         }).catch(err => {
-            console.log("Deu Erro");
+            console.log(err);
+        })
+        axios.get("http://localhost:3000/consultationhistory",req).then(res => {
+            this.schedules = res.data;
+        }).catch(err => {
             console.log(err);
         })
     },
@@ -113,6 +113,7 @@ export default {
         return {
             users: [],
             doctors: [],
+            schedules: [],
             showModal: false,
             deleteUserId: -1
         }

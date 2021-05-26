@@ -32,7 +32,6 @@ import axios from 'axios';
 export default {
   created(){
         axios.get("http://localhost:3000/specialty").then(res => {
-            console.log("Nao Deu Erro");
             console.log(res);
             this.specialitys = res.data;
         }).catch(err => {

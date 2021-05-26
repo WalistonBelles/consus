@@ -33,7 +33,6 @@ import axios from 'axios';
 export default {
   created(){
         axios.get("http://localhost:3000/requestingUnit").then(res => {
-            console.log("Nao Deu Erro");
             console.log(res);
             this.requestings = res.data;
         }).catch(err => {

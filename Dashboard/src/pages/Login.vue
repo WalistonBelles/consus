@@ -15,6 +15,7 @@
                 </div>
                 <base-button class="animation-on-hover" type="success" @click="login">Acessar</base-button>
             </form>
+            
         </card>
     </div>    
 </template>
@@ -22,6 +23,7 @@
 <script>
 import BaseAlert from "../components/BaseAlert";
 import BaseButton from "../components/BaseButton";
+import Modal from '@/components/Modal';
 import axios from 'axios';
 export default {
     data(){
@@ -33,7 +35,8 @@ export default {
     },
     components: {
         BaseAlert,
-        BaseButton
+        BaseButton,
+        Modal
     },
     methods: {
         login(){
@@ -43,6 +46,7 @@ export default {
             }).then(res => {
                 console.log(res);
                 localStorage.setItem('token',res.data.token);
+                localStorage.setItem('usuario',res.data.usuario);
                 this.$router.push({name: 'dashboard'});
             }).catch(err => {
                 var msgErro = err.response.data.err;

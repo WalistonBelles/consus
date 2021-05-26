@@ -1,5 +1,15 @@
 var knex = require("../database/connection");
 class ConsultationHistory {
+    // Retorna todos os históricos de consulta do sistema
+    async findAllConsultas(){
+        try{
+            var result = await knex.select(["id"]).table("historico_de_consultas");
+            return result;
+        }catch(err){
+            console.log(err);
+            return [];
+        }
+    }
     // Retorna todos os históricos de consulta do paciente
     async findAll(id_paciente){
         try{

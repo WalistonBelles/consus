@@ -9,7 +9,7 @@
          :aria-hidden="!show">
 
       <div class="modal-dialog"
-           :class="[{'modal-notice': type === 'notice'}, {'modal-dialog-centered': centered}, modalClasses]">
+           :class="[{'modal-notice': type === 'notice'}, modalClasses]">
         <div class="modal-content" :class="[gradient ? `bg-gradient-${gradient}` : '',modalContentClasses]">
 
           <div class="modal-header" :class="[headerClasses]" v-if="$slots.header">

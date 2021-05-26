@@ -15,15 +15,18 @@ class ConsultationHistoryController{
         }
         var querys = await ConsultationHistory.findAll(resultadoCPF.id);
         //var resultado = await ConsultationHistory.findDoctor(querys[0].id_usuario);
-        
-        var resultado = querys.map(async (a) => {
-            return {
-                medico: await ConsultationHistory.findDoctor(a.id_usuario)
-            };
-        });
+        var resultado = await Promise.all(querys.map(async (i) => {
+            i.id_usuario = await ConsultationHistory.findDoctor(i.id_usuario);
+            return i.id_usuario;
+        }));
         res.json(querys);
     }
 
+    async indexConsultas(req, res){
+        var consultas = await ConsultationHistory.findAllConsultas();
+        res.json(consultas);
+    }
+    
     async indexMedico(req, res){
         var {id_medico} = req.body;
         var doctors = await ConsultationHistory.findDoctor(id_medico);

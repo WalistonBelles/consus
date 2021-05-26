@@ -55,11 +55,18 @@
       }
     }
 
-      .card-bg-green {
+    .card-bg-green {
+      padding: 15px 15px 0;
+      border-radius: $border-radius-sm;
+      background: -webkit-gradient(linear, left top, right top, from(#1BE099), to(#38F575));
+      background: linear-gradient(to right, #1BE099, #38F575);
+    }
+
+    .card-bg-login {
         padding: 15px 15px 0;
         border-radius: $border-radius-sm;
-        background: -webkit-gradient(linear, left top, right top, from(#1BE099), to(#38F575));
-        background: linear-gradient(to right, #1BE099, #38F575);
+        background: -webkit-gradient(linear, left top, right top, from(#0BD4E0), to(#00AAF7));
+        background: linear-gradient(to right, #0BD4E0, #00AAF7);
     }
 
     .map{

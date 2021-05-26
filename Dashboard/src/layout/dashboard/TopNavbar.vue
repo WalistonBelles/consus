@@ -24,44 +24,66 @@
       <collapse-transition>
         <div class="collapse navbar-collapse show" v-show="showMenu">
           <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
-            <div class="search-bar input-group" @click="searchModalVisible = true">
+            <div class="search-bar input-group" @click="loginModalVisible = true">
               <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal">
-                <i class="tim-icons icon-zoom-split"></i>
+                <i class="tim-icons icon-button-power"></i>
               </button>
             </div>
-            <modal :show.sync="searchModalVisible"
-                   class="modal-search"
-                   id="searchModal"
-                   :centered="false"
-                   :show-close="true">
-              <input slot="header" v-model="searchQuery" type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
+            <modal :show.sync="loginModalVisible"
+                body-classes="p-0"
+                modal-classes="modal-sm"
+                id="loginModal"
+                :show-close="true">
+              <card type="secondary"
+                    header-classes="bg-white pb-5"
+                    body-classes="px-lg-5 py-lg-5"
+                    class="border-0 mb-0">
+                  <template>
+                      <div class="text-muted text-center mb-3">
+                          <small>Sign in with</small>
+                      </div>
+                      <div class="btn-wrapper text-center">
+                          <base-button type="default">
+                              <img slot="icon" src="https://demos.creative-tim.com/argon-design-system/assets/img/icons/common/github.svg">
+                              Github
+                          </base-button>
+
+                          <base-button type="danger">
+                              <img slot="icon" src="https://demos.creative-tim.com/argon-design-system/assets/img/icons/common/google.svg">
+                              Google
+                          </base-button>
+                      </div>
+                  </template>
+                  <template>
+                    <div class="text-center text-muted mb-4">
+                        <small>Or sign in with credentials</small>
+                    </div>
+                    <form role="form">
+                        <base-input alternative
+                                      class="mb-3"
+                                      placeholder="Email"
+                                      addon-left-icon="ni ni-email-83" v-model="email">
+                        </base-input>
+                        <base-input alternative
+                                      type="password"
+                                      placeholder="Password"
+                                      addon-left-icon="ni ni-lock-circle-open" v-model="password">
+                        </base-input>
+                        <base-checkbox>
+                            Lembrar-me
+                        </base-checkbox>
+                        <div v-if="error != undefined">
+                            <base-alert type="warning">
+                                <strong>Alerta!</strong> {{error}}!
+                            </base-alert>
+                        </div>
+                        <div class="text-center">
+                            <base-button type="success" class="my-4" @click="login">Acessar</base-button>
+                        </div>
+                    </form>
+                  </template>
+              </card>
             </modal>
-            <base-dropdown tag="li"
-                           :menu-on-right="!$rtl.isRTL"
-                           title-tag="a" class="nav-item">
-              <a slot="title" href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true">
-                <div class="notification d-none d-lg-block d-xl-block"></div>
-                <i class="tim-icons icon-sound-wave"></i>
-                <p class="d-lg-none">
-                  New Notifications
-                </p>
-              </a>
-              <li class="nav-link">
-                <a href="#" class="nav-item dropdown-item">Mike John responded to your email</a>
-              </li>
-              <li class="nav-link">
-                <a href="#" class="nav-item dropdown-item">You have 5 more tasks</a>
-              </li>
-              <li class="nav-link">
-                <a href="#" class="nav-item dropdown-item">Your friend Michael is in town</a>
-              </li>
-              <li class="nav-link">
-                <a href="#" class="nav-item dropdown-item">Another notification</a>
-              </li>
-              <li class="nav-link">
-                <a href="#" class="nav-item dropdown-item">Another one</a>
-              </li>
-            </base-dropdown>
             <base-dropdown tag="li"
                            :menu-on-right="!$rtl.isRTL"
                            title-tag="a"
@@ -84,7 +106,7 @@
               </li>
               <div class="dropdown-divider"></div>
               <li class="nav-link">
-                <a href="#" class="nav-item dropdown-item">Sair</a>
+                <a href="#" class="nav-item dropdown-item" @click="logout">Sair</a>
               </li>
             </base-dropdown>
           </ul>
@@ -94,11 +116,29 @@
   </nav>
 </template>
 <script>
-  import { CollapseTransition } from 'vue2-transitions';
-  import Modal from '@/components/Modal';
+
+import { CollapseTransition } from 'vue2-transitions';
+import Modal from '@/components/Modal';
+import BaseAlert from "@/components/BaseAlert";
+import BaseButton from "@/components/BaseButton";
+import axios from 'axios';
 
   export default {
+    data() {
+      return {
+        activeNotifications: false,
+        showMenu: false,
+        searchModalVisible: false,
+        loginModalVisible: false,
+        searchQuery: '',
+        password: '',
+        email: '',
+        error: undefined,
+      };
+    },
     components: {
+      BaseAlert,
+      BaseButton,
       CollapseTransition,
       Modal
     },
@@ -111,15 +151,21 @@
         return this.$rtl.isRTL;
       }
     },
-    data() {
-      return {
-        activeNotifications: false,
-        showMenu: false,
-        searchModalVisible: false,
-        searchQuery: ''
-      };
-    },
     methods: {
+      login(){
+        axios.post("http://localhost:3000/login",{
+            password: this.password,
+            email: this.email
+        }).then(res => {
+            console.log(res);
+            localStorage.setItem('token',res.data.token);
+            localStorage.setItem('usuario',res.data.usuario);
+            this.$router.push({name: 'dashboard'});
+        }).catch(err => {
+            var msgErro = err.response.data.err;
+            this.error = msgErro;
+        })
+      },
       capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
       },
@@ -137,6 +183,12 @@
       },
       toggleMenu() {
         this.showMenu = !this.showMenu;
+      },
+      logout(){
+        localStorage.removeItem('usuario');
+        localStorage.removeItem('token');
+        this.logado = undefined;
+        this.$router.push({name: 'login'});
       }
     }
   };
