@@ -20,9 +20,6 @@
 </template>
 
 <script>
-import BaseAlert from "../components/BaseAlert";
-import BaseButton from "../components/BaseButton";
-import axios from 'axios';
 export default {
     data(){
         return {

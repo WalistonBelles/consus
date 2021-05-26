@@ -1,7 +1,6 @@
 <template>
     <div style="text-align: center;">
-        <h1>Painel Adm!</h1>
-        
+        <h1 style="color: #122c77;">Painel Adm!</h1>
         <div class="row">
             <div class="col-sm-3">
                 <div class="card">
@@ -15,7 +14,7 @@
                 <div class="card">
                     <div class="card-bg-green">Médicos</div>
                     <div class="card-body">
-                        <p class="card-text">{{doctors.length}}</p>
+                        <p class="card-text"><i class="tim-icons icon-laptop"></i> {{doctors.length}}</p>
                     </div>
                 </div>
             </div>
@@ -23,7 +22,7 @@
                 <div class="card">
                     <div class="card-bg-green">Consultas</div>
                     <div class="card-body">
-                        <p class="card-text">{{schedules.length}}</p>
+                        <p class="card-text"><i class="tim-icons icon-notes"></i> {{schedules.length}}</p>
                     </div>
                 </div>
             </div>
@@ -71,9 +70,17 @@
                     <div class="card-header">Agenda</div>
                     <div class="card-body">
                         <p class="card-text">Cadastrar nova consulta.</p>
-                        
                     </div>
                     <div class="card-footer"><a href="#/schedule"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Agenda</base-button></a></div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-header">Histórico Paciente</div>
+                    <div class="card-body">
+                        <p class="card-text">Histórico de Paciente.</p>
+                    </div>
+                    <div class="card-footer"><a href="#/querys/consultationHistory"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Agenda</base-button></a></div>
                 </div>
             </div>
         </div>

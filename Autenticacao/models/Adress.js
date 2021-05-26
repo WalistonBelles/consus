@@ -1,6 +1,6 @@
 var knex = require("../database/connection");
 class Adress {
-    // Adicionar novo cargo
+    // Adicionar novo endereco
     async new(pais, cidade, cep, rua, bairro, numero, ponto_de_referencia){
         try{
             await knex.insert({pais, cidade, cep, rua, bairro, numero, ponto_de_referencia}).table("endereco");

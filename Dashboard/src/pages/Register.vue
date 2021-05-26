@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Registro de usuário!</h2>    
+        <h2 style="color: #122c77;">Registro de usuário!</h2>    
         <hr>
         <card>
             <form>

@@ -1,16 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-absolute" :class="{'bg-white': showMenu, 'navbar-transparent': !showMenu}">
     <div class="container-fluid">
-      <div class="navbar-wrapper">
-        <div class="navbar-toggle d-inline" :class="{toggled: $sidebar.showSidebar}">
-          <button type="button" class="navbar-toggler" aria-label="Navbar toggle button" @click="toggleSidebar">
-            <span class="navbar-toggler-bar bar1"></span>
-            <span class="navbar-toggler-bar bar2"></span>
-            <span class="navbar-toggler-bar bar3"></span>
-          </button>
-        </div>
-        <a class="navbar-brand" href="#">{{routeName}}</a>
-      </div>
       <button class="navbar-toggler" type="button"
               @click="toggleMenu"
               data-toggle="collapse"
@@ -24,7 +14,7 @@
       <collapse-transition>
         <div class="collapse navbar-collapse show" v-show="showMenu">
           <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
-            <div class="search-bar input-group" @click="loginModalVisible = true">
+            <div v-if="usuario == undefined" class="search-bar input-group" @click="loginModalVisible = true">
               <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal">
                 <i class="tim-icons icon-button-power"></i>
               </button>
@@ -124,6 +114,13 @@ import BaseButton from "@/components/BaseButton";
 import axios from 'axios';
 
   export default {
+    created(){
+      if (localStorage.getItem('usuario') != undefined){
+        this.usuario = localStorage.getItem('usuario');
+      }else {
+        this.usuario = undefined;
+      }
+    },
     data() {
       return {
         activeNotifications: false,
@@ -134,6 +131,7 @@ import axios from 'axios';
         password: '',
         email: '',
         error: undefined,
+        usuario: undefined
       };
     },
     components: {

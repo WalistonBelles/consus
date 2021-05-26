@@ -10,6 +10,7 @@ var DoctorController = require("../controllers/DoctorController");
 var ScheduleController = require("../controllers/ScheduleController");
 var RequestingUnitController = require("../controllers/RequestingUnitController");
 var ConsultationHistory = require("../controllers/ConsultationHistoryController");
+var QueryController = require("../controllers/QueryController");
 var AdminAuth = require("../middleware/AdminAuth");
 var DoctorAuth = require("../middleware/DoctorAuth");
 var EmployeeAuth = require("../middleware/EmployeeAuth");
@@ -35,6 +36,7 @@ router.post("/adress", EmployeeAuth, AdressController.create);
 router.post("/consultationhistory", ConsultationHistory.create);
 router.post("/usercpf", ConsultationHistory.index);
 router.post("/usermedico", ConsultationHistory.indexMedico);
+router.post("/query", QueryController.create);
 
 // Área de Médico
 

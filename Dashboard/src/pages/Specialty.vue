@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Cadastro de Especialidades!</h2>    
+        <h2 style="color: #122c77;">Cadastro de Especialidades!</h2>    
         <hr>
         <card>
             <form>

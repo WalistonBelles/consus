@@ -52,7 +52,7 @@ class Doctor {
     // Busca no banco se o usuário é um médico
     async findByCargo(cpf){
         try{
-            var result = await knex.select(["id"]).whereRaw('`cpf` = "' + cpf + '" AND `cargo` = "Medico"').table("usuario");
+            var result = await knex.select(["id"]).whereRaw('`cpf` = "' + cpf + '" AND `cargo` = 4').table("usuario");
             
             if(result.length > 0){
                 return result[0];
