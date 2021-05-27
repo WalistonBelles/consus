@@ -21,7 +21,7 @@
                             <th scope="col">Unidade</th>
                             <th scope="col">Descricao</th>
                             <th scope="col" class="text-center">Status</th>
-                            <th scope="col" class="text-right">Operações</th>
+                            <th scope="col" class="text-center">Operações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,7 +31,7 @@
                             <td>{{query.nome}}</td>
                             <td>{{query.data}}</td>
                             <td class="text-center"><p class="text-danger">{{query.atendida}}</p></td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <router-link :to="{name: 'tomeet', params:{id: query.conid, paciente_id: query.pacid, unidade_id: query.unid, medico_id: query.medid}}">
                                     <base-button simple type="primary">Atender</base-button>
                                 </router-link>

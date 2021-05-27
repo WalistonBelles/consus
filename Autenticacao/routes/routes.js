@@ -9,6 +9,8 @@ var SpecialtyController = require("../controllers/SpecialtyController");
 var DoctorController = require("../controllers/DoctorController");
 var ScheduleController = require("../controllers/ScheduleController");
 var RequestingUnitController = require("../controllers/RequestingUnitController");
+var PerformerUnitController = require("../controllers/PerformerUnitController");
+var ExamController = require("../controllers/ExamController");
 var ConsultationHistory = require("../controllers/ConsultationHistoryController");
 var QueryController = require("../controllers/QueryController");
 var AdminAuth = require("../middleware/AdminAuth");
@@ -38,6 +40,8 @@ router.post("/usercpf", ConsultationHistory.index);
 router.post("/usermedico", ConsultationHistory.indexMedico);
 router.post("/query", QueryController.create);
 router.get("/requestingUnit", RequestingUnitController.index);
+router.post("/performerUnit", PerformerUnitController.findUnit);
+router.get("/exam", ExamController.index);
 
 // Área de Médico
 router.post("/answerInquiry", QueryController.index);

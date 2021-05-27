@@ -3,6 +3,9 @@ var Doctor = require("../models/Doctor");
 var User = require("../models/User");
 var RequestingUnit = require("../models/RequestingUnit");
 var ConsultationHistory = require("../models/ConsultationHistory");
+var PerformerUnit = require("../models/PerformerUnit");
+var Exam = require("../models/Exam");
+var Queue = require("../models/Queue");
 
 class QueryController{
 
@@ -85,7 +88,7 @@ class QueryController{
     }
     
     async edit(req, res){
-        var {id, ID_Medico, ID_Paciente, ID_Unidade, descricao, data} = req.body;
+        var {id, ID_Medico, ID_Paciente, ID_Unidade, descricao, data, exame, unidade} = req.body;
         if (id == undefined || id == '' || id == ' '){
             res.status(400);
             res.json({err: "Ocorreu 1 error ao alterar a consulta!"})
@@ -93,7 +96,7 @@ class QueryController{
         }
         if (ID_Medico == undefined || ID_Medico == '' || ID_Medico == ' '){
             res.status(400);
-            res.json({err: "Médicoa inválido!"})
+            res.json({err: "Médico inválido!"})
             return;
         }
         if (ID_Paciente == undefined || ID_Paciente == '' || ID_Paciente == ' '){
@@ -115,6 +118,11 @@ class QueryController{
             res.status(400);
             res.json({err: "Data inválida!"})
             return;
+        }
+        if (exame != undefined && exame != '' && exame != ' ' && unidade != undefined && unidade != '' && unidade != ' '){
+            var resultUnidade = PerformerUnit.findByNome(unidade);
+            var resultExame = Exam.findByName(exame, resultUnidade.id);
+            var resultQueue = await Queue.new(resultExame.id, ID_Paciente, resultExame.id);
         }
         await ConsultationHistory.new(ID_Medico, ID_Paciente, ID_Unidade, descricao, data);
         var result = await Query.update(id);

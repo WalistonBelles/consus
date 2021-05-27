@@ -31,7 +31,7 @@ import BaseAlert from "../components/BaseAlert";
 import BaseButton from "../components/BaseButton";
 import axios from 'axios';
 export default {
-  created(){
+    created(){
         axios.get("http://localhost:3000/requestingUnit").then(res => {
             console.log(res);
             this.requestings = res.data;
