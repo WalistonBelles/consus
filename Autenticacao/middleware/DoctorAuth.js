@@ -11,7 +11,7 @@ module.exports = function(req, res, next){
         try{
             var decoded = jwt.verify(token,secret);
             
-            if(decoded.cargo == 4){
+            if(decoded.cargo >= 4){
                 next();
             }else{
                 res.status(403);

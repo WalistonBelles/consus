@@ -37,8 +37,13 @@ router.post("/consultationhistory", ConsultationHistory.create);
 router.post("/usercpf", ConsultationHistory.index);
 router.post("/usermedico", ConsultationHistory.indexMedico);
 router.post("/query", QueryController.create);
+router.get("/requestingUnit", RequestingUnitController.index);
 
 // Área de Médico
+router.post("/answerInquiry", QueryController.index);
+router.get("/querys", QueryController.indexConsultas);
+router.put("/query", AdminAuth, QueryController.edit);
+
 
 // Área de Administrador
 router.get("/user", AdminAuth, UserController.index);
@@ -47,7 +52,6 @@ router.get("/specialty", AdminAuth, SpecialtyController.index);
 router.get("/doctor", AdminAuth, DoctorController.index);
 router.get("/consultationhistory", AdminAuth, ConsultationHistory.indexConsultas);
 router.get("/user", AdminAuth, UserController.index);
-router.get("/requestingUnit", AdminAuth, RequestingUnitController.index);
 router.put("/user", AdminAuth, UserController.edit);
 router.delete("/user/:id",AdminAuth, UserController.remove);
 router.post("/validate", AdminAuth, HomeController.validate);

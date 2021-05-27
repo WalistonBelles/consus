@@ -10,15 +10,15 @@
                     </base-alert>
                 </div>
                 <div class="form-row">
-                    <base-input class="col-md-6" type="text" label="CRM do Médico" placeholder="CRM do Médico" v-model="crm"/>
-                    <base-input class="col-md-6" type="text" label="CPF do Paciente" placeholder="CPF do Paciente" v-model="cpf_paciente"/>
+                    <base-input class="col-md-6" type="text" label="CRM do Médico" placeholder="CRM do Médico" v-model="Medico"/>
+                    <base-input class="col-md-6" type="text" label="CPF do Paciente" placeholder="CPF do Paciente" v-model="Paciente"/>
                     <base-input class="col-md-3" label="Selecione a Unidade">
-                      <select id="inputState" class="form-control" v-model="nome_unidade">
+                      <select id="inputState" class="form-control" v-model="Unidade">
                         <option selected>Selecionar...</option>
                         <option v-for="requesting in requestings" :key="requesting.id">{{requesting.nome}}</option>
                       </select>
                     </base-input>
-                    <base-input class="col-md-6" type="text" label="Data do Registro" placeholder="Data do Registro" v-model="dataDeRegistro"/>
+                    <base-input class="col-md-6" type="text" label="Data do Registro" placeholder="Data do Registro" v-model="Data"/>
                 </div>
                 <base-button class="animation-on-hover" type="success" @click="register">Cadastrar</base-button>
             </form>
@@ -43,10 +43,10 @@ export default {
     data(){
         return {
             requestings: [],
-            dataDeRegistro: '',
-            cpf_paciente: '',
-            crm: '',
-            nome_unidade: '',
+            Unidade: '',
+            Paciente: '', 
+            Medico: '', 
+            Data: '',
             error: undefined,
         }
     },
@@ -56,11 +56,11 @@ export default {
     },
     methods: {
         register(){
-            axios.post("http://localhost:3000/schedule",{
-                dataDeRegistro: this.dataDeRegistro,
-                crm: this.crm,
-                cpf_paciente: this.cpf_paciente,
-                nome_unidade: this.nome_unidade
+            axios.post("http://localhost:3000/query",{
+                Unidade: this.Unidade,
+                Paciente: this.Paciente, 
+                Medico: this.Medico, 
+                Data: this.Data
             }).then(res => {
                 console.log(res);
                 this.$router.push({name: 'dashboard'});

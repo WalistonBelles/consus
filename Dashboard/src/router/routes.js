@@ -12,6 +12,8 @@ const Specialty = () => import("@/pages/Specialty.vue");
 const Doctor = () => import("@/pages/Doctor.vue");
 const Schedule = () => import("@/pages/Schedule.vue");
 const ChangeAvatar = () => import("@/pages/ChangeAvatar.vue");
+const AnswerInquiry = () => import("@/pages/querys/AnswerInquiry.vue");
+const Tomeet = () => import("@/pages/querys/Tomeet.vue");
 const ConsultationHistory = () => import("@/pages/querys/ConsultationHistory.vue");
 
 const routes = [
@@ -64,6 +66,16 @@ const routes = [
         path: "changeavatar",
         name: "changeavatar",
         component: ChangeAvatar
+      },
+      {
+        path: "answerInquiry",
+        name: "answerInquiry",
+        component: AnswerInquiry
+      },
+      {
+        path: "tomeet",
+        name: "tomeet",
+        component: Tomeet
       },
       {
         path: "querys/consultationHistory",

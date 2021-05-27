@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 style="color: #122c77;">Histórico de Consultas do Paciente!</h2>    
+        <h2 style="color: #122c77;">Consultas para Atender!</h2>    
         <hr>
         <card>
             <form>
@@ -9,7 +9,7 @@
                         <strong>Alerta!</strong> {{error}}!
                     </base-alert>
                 </div>
-                <base-input class="col-md-6" type="text" label="Digite o CPF" placeholder="Digite o CPF" v-model="cpf"/>
+                <base-input class="col-md-6" type="text" label="Digite o CRM" placeholder="Digite o CRM" v-model="crm"/>
                 <base-button class="animation-on-hover" type="success" @click="consultar">Consultar</base-button>
             </form>
             <div v-if="querys.length > 0">
@@ -20,7 +20,7 @@
                             <th scope="col">Medico</th>
                             <th scope="col">Unidade</th>
                             <th scope="col">Descricao</th>
-                            <th scope="col">Data</th>
+                            <th scope="col" class="text-center">Status</th>
                             <th scope="col" class="text-right">Operações</th>
                         </tr>
                     </thead>
@@ -29,15 +29,12 @@
                             <td>{{query.unome}}</td>
                             <td>{{query.id_usuario}}</td>
                             <td>{{query.nome}}</td>
-                            <td>{{query.descricao}}</td>
                             <td>{{query.data}}</td>
+                            <td class="text-center"><p class="text-danger">{{query.atendida}}</p></td>
                             <td class="text-right">
-                                <base-button type="success" size="sm" icon>
-                                    <i class="tim-icons icon-settings"></i>
-                                </base-button>
-                                <base-button type="danger" size="sm" icon>
-                                    <i class="tim-icons icon-simple-remove"></i>
-                                </base-button>
+                                <router-link :to="{name: 'tomeet', params:{id: query.conid, paciente_id: query.pacid, unidade_id: query.unid, medico_id: query.medid}}">
+                                    <base-button simple type="primary">Atender</base-button>
+                                </router-link>
                             </td>
                         </tr>
                     </tbody>
@@ -56,7 +53,7 @@ export default {
     data(){
         return {
             querys: [],
-            cpf: '',
+            crm: '',
             error: undefined,
         }
     },
@@ -67,8 +64,8 @@ export default {
     },
     methods: {
         consultar(){
-            axios.post("http://localhost:3000/usercpf",{
-                cpf: this.cpf
+            axios.post("http://localhost:3000/answerInquiry",{
+                crm: this.crm
             }).then(res => {
                 this.querys = res.data;
                 this.error = undefined;

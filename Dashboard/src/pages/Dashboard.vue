@@ -20,9 +20,17 @@
             </div>
             <div class="col-sm-3">
                 <div class="card">
-                    <div class="card-bg-green">Consultas</div>
+                    <div class="card-bg-green">Consultas Atendidas</div>
                     <div class="card-body">
                         <p class="card-text"><i class="tim-icons icon-notes"></i> {{schedules.length}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-bg-green">Consultas Pendentes</div>
+                    <div class="card-body">
+                        <p class="card-text"><i class="tim-icons icon-notes"></i> {{querys.length}}</p>
                     </div>
                 </div>
             </div>
@@ -80,7 +88,16 @@
                     <div class="card-body">
                         <p class="card-text">Histórico de Paciente.</p>
                     </div>
-                    <div class="card-footer"><a href="#/querys/consultationHistory"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Agenda</base-button></a></div>
+                    <div class="card-footer"><a href="#/querys/consultationHistory"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Historico</base-button></a></div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-header">Consultas</div>
+                    <div class="card-body">
+                        <p class="card-text">Consultas</p>
+                    </div>
+                    <div class="card-footer"><a href="#/answerInquiry"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Consultas</base-button></a></div>
                 </div>
             </div>
         </div>
@@ -114,6 +131,11 @@ export default {
         }).catch(err => {
             console.log(err);
         })
+        axios.get("http://localhost:3000/querys",req).then(res => {
+            this.querys = res.data;
+        }).catch(err => {
+            console.log(err);
+        })
     },
     data()
     {
@@ -121,6 +143,7 @@ export default {
             users: [],
             doctors: [],
             schedules: [],
+            querys: [],
             showModal: false,
             deleteUserId: -1
         }

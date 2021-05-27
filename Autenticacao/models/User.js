@@ -16,7 +16,7 @@ class User{
 
     async findById(id){
         try{
-            var result = await knex.select(["id","email","role","name"]).where({id:id}).table("usuario");
+            var result = await knex.select(["id","nome","cpf"]).where({id:id}).table("usuario");
             
             if(result.length > 0){
                 return result[0];
