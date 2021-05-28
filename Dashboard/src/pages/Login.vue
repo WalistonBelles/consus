@@ -25,7 +25,7 @@
     import BaseAlert from "../components/BaseAlert";
     import BaseButton from "../components/BaseButton";
     import Modal from '@/components/Modal';
-    import axios from 'axios';
+    import api from '@/services/api';
     export default {
         data(){
             return {
@@ -41,7 +41,7 @@
         },
         methods: {
             login(){
-                axios.post("http://localhost:3000/login",{
+                api.post("/login",{
                     password: this.password,
                     email: this.email
                 }).then(res => {

@@ -22,7 +22,7 @@
 <script>
 import BaseAlert from "../components/BaseAlert";
 import BaseButton from "../components/BaseButton";
-import axios from 'axios';
+import api from '@/services/api';
 export default {
     data(){
         return {
@@ -37,7 +37,7 @@ export default {
     },
     methods: {
         register(){
-            axios.post("http://localhost:3000/role",{
+            api.post("/role",{
                 nome: this.nome,
                 codigo: this.codigo
             }).then(res => {

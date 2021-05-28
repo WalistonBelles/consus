@@ -48,7 +48,7 @@
 import BaseAlert from "../../components/BaseAlert";
 import BaseButton from "../../components/BaseButton";
 import BaseTable from "../../components/BaseTable";
-import axios from 'axios';
+import api from '@/services/api';
 export default {
     data(){
         return {
@@ -64,7 +64,7 @@ export default {
     },
     methods: {
         consultar(){
-            axios.post("http://localhost:3000/answerInquiry",{
+            api.post("/answerInquiry",{
                 crm: this.crm
             }).then(res => {
                 this.querys = res.data;

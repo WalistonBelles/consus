@@ -28,10 +28,10 @@
 <script>
 import BaseAlert from "../components/BaseAlert";
 import BaseButton from "../components/BaseButton";
-import axios from 'axios';
+import api from '@/services/api';
 export default {
   created(){
-        axios.get("http://localhost:3000/specialty").then(res => {
+        api.get("/specialty").then(res => {
             console.log(res);
             this.specialitys = res.data;
         }).catch(err => {
@@ -54,7 +54,7 @@ export default {
     },
     methods: {
         register(){
-            axios.post("http://localhost:3000/doctor",{
+            api.post("/doctor",{
                 crm: this.crm,
                 especialidade: this.especialidade,
                 cpf: this.cpf

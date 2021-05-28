@@ -107,7 +107,7 @@
 <script>
 import BaseAlert from "../components/BaseAlert";
 import BaseButton from "../components/BaseButton";
-import axios from 'axios';
+import api from '@/services/api';
 export default {
     created(){
         var req = {
@@ -115,23 +115,23 @@ export default {
                 Authorization: "Bearer " + localStorage.getItem('token')
             }
         }
-        axios.get("http://localhost:3000/user",req).then(res => {
+        api.get("/user",req).then(res => {
             this.users = res.data;
         }).catch(err => {
             console.log(err);
             this.$router.push({name: 'login'});
         })
-        axios.get("http://localhost:3000/doctor",req).then(res => {
+        api.get("/doctor",req).then(res => {
             this.doctors = res.data;
         }).catch(err => {
             console.log(err);
         })
-        axios.get("http://localhost:3000/consultationhistory",req).then(res => {
+        api.get("/consultationhistory",req).then(res => {
             this.schedules = res.data;
         }).catch(err => {
             console.log(err);
         })
-        axios.get("http://localhost:3000/querys",req).then(res => {
+        api.get("/querys",req).then(res => {
             this.querys = res.data;
         }).catch(err => {
             console.log(err);
@@ -166,7 +166,7 @@ export default {
                     Authorization: "Bearer " + localStorage.getItem('token')
                 }
             }
-            axios.delete("http://localhost:3000/user/"+this.deleteUserId, req).then(res => {
+            api.delete("/user/"+this.deleteUserId, req).then(res => {
                 console.log(res);
                 this.showModal = false;
                 this.users = this.users.filter(u => u.id != this.deleteUserId);

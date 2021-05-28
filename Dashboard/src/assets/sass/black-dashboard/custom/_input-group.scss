@@ -196,6 +196,13 @@ textarea.form-control{
         border-right: none;
     }
 }
+select {
+    border-radius: 2px;
+}
+select option {
+    background: rgba(39, 41, 61, 1);
+}
+
 
 .has-success,
 .has-danger{

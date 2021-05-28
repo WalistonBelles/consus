@@ -51,10 +51,10 @@ import BaseButton from "../../components/BaseButton";
 import BaseTable from "../../components/BaseTable";
 import { CollapseTransition } from 'vue2-transitions';
 import Modal from '@/components/Modal';
-import axios from 'axios';
+import api from '@/services/api';
 export default {
     created(){
-        axios.get("http://localhost:3000/exam")
+        api.get("/exam")
         .then(res => {
             this.exams = res.data;
             this.exame = this.exams[0].nome;
@@ -67,7 +67,7 @@ export default {
                 Authorization: "Bearer " + localStorage.getItem('token')
             }
         }
-        axios.get("http://localhost:3000/user/" + this.$route.params.paciente_id, req)
+        api.get("/user/" + this.$route.params.paciente_id, req)
         .then(res => {
             this.name = res.data.nome;
         }).catch(err => {
@@ -104,7 +104,7 @@ export default {
             unidadeProcura();
         },
         unidadeProcura(){
-            axios.post("http://localhost:3000/performerUnit",{
+            api.post("/performerUnit",{
                 Exame: this.exame
             }).then(res => {
                 this.units = res.data;
@@ -120,7 +120,7 @@ export default {
                     Authorization: "Bearer " + localStorage.getItem('token')
                 }
             }
-            axios.put("http://localhost:3000/query",{
+            api.put("/query",{
                 id: this.$route.params.id,
                 ID_Medico: this.$route.params.medico_id, 
                 ID_Paciente: this.$route.params.paciente_id, 

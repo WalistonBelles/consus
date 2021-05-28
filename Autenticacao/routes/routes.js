@@ -33,8 +33,8 @@ router.post("/recoverpassword", UserController.recoverPassword);
 router.post("/changepassword", UserController.changePassword);
 
 // Área de Funcionário
-router.post('/user', EmployeeAuth, UserController.create);
-router.post("/adress", EmployeeAuth, AdressController.create);
+router.post('/user', UserController.create);
+router.post("/adress", AdressController.create);
 router.post("/consultationhistory", ConsultationHistory.create);
 router.post("/usercpf", ConsultationHistory.index);
 router.post("/usermedico", ConsultationHistory.indexMedico);
@@ -46,7 +46,7 @@ router.get("/exam", ExamController.index);
 // Área de Médico
 router.post("/answerInquiry", QueryController.index);
 router.get("/querys", QueryController.indexConsultas);
-router.put("/query", AdminAuth, QueryController.edit);
+router.put("/query", QueryController.edit);
 
 
 // Área de Administrador

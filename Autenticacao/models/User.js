@@ -80,7 +80,7 @@ class User{
     async new(nome,senha,nascimento,cpf, telefone, sus_card, rg, email, endereco){
         try{
             var hash = await bcrypt.hash(senha, 10);
-            var cargo = 'Paciente';
+            var cargo = 1;
             await knex.insert({nome, senha: hash, nascimento, cpf, telefone, sus_card, rg, email, cargo, endereco}).table("usuario");
         }catch(err){
             console.log(err);

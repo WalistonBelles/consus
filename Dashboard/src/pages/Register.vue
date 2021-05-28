@@ -15,7 +15,7 @@
                     <base-input class="col-md-6" type="email" label="Email" placeholder="Email" v-model="email"/>
                 </div>
                 <div class="form-row">
-                    <base-input class="col-md-4" type="text" label="Data de Nascimento" placeholder="Data de Nascimento" v-model="dataNascimento"/>
+                    <datetime input-class="form-control" style="position: relative; top: 25px;" class="col-md-3" type="datetime" label="Data de Nascimento" placeholder="Data de Nascimento" v-model="dataNascimento"></datetime>
                     <base-input class="col-md-4" type="text" label="Número do Cpf" placeholder="Cpf" v-model="cpf"/>
                     <base-input class="col-md-4" type="text" label="Telefone Para Contato" placeholder="Telefone" v-model="telefone"/>
                     <base-input class="col-md-6" type="text" label="Cartão do Sus" placeholder="Cartão do Sus" v-model="sus_card"/>
@@ -24,7 +24,6 @@
                 <div class="form-row">
                     <base-input class="col-md-3" label="Selecione o Pais">
                             <select id="inputState" class="form-control" v-model="pais">
-                                <option selected>Selecionar...</option>
                                 <option>Brasil</option>
                                 <option>Uruguai</option>
                                 <option>Estados Unidos</option>
@@ -46,7 +45,7 @@
 <script>
 import BaseAlert from "../components/BaseAlert";
 import BaseButton from "../components/BaseButton";
-import axios from 'axios';
+import api from '@/services/api';
 export default {
     data(){
         return {
@@ -58,7 +57,7 @@ export default {
             telefone: '', 
             sus_card: '',
             rg: '',
-            pais: '',
+            pais: 'Brasil',
             cidade: '', 
             cep: '', 
             rua: '', 
@@ -76,7 +75,7 @@ export default {
     },
     methods: {
         register(){
-            axios.post("http://localhost:3000/user",{
+            api.post("/user",{
                 nome: this.name,
                 senha: this.password,
                 nascimento: this.dataNascimento,

@@ -21,7 +21,7 @@
 <script>
 import BaseAlert from "../components/BaseAlert";
 import BaseButton from "../components/BaseButton";
-import axios from 'axios';
+import api from '@/services/api';
 export default {
     data(){
         return {
@@ -35,7 +35,7 @@ export default {
     },
     methods: {
         register(){
-            axios.post("http://localhost:3000/specialty",{
+            api.post("/specialty",{
                 nome: this.nome
             }).then(res => {
                 console.log(res);
