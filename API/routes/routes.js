@@ -52,15 +52,15 @@ router.put("/query", QueryController.edit);
 // Área de Administrador
 router.get("/user", AdminAuth, UserController.index);
 router.get("/user/:id", AdminAuth, UserController.findUser);
-router.get("/specialty", AdminAuth, SpecialtyController.index);
-router.get("/doctor", AdminAuth, DoctorController.index);
-router.get("/consultationhistory", AdminAuth, ConsultationHistory.indexConsultas);
-router.get("/user", AdminAuth, UserController.index);
+router.get("/specialty", SpecialtyController.index);
+router.get("/doctor", DoctorController.index);
+router.get("/consultationhistory", ConsultationHistory.indexConsultas);
+router.get("/user", UserController.index);
 router.put("/user", AdminAuth, UserController.edit);
 router.delete("/user/:id",AdminAuth, UserController.remove);
-router.post("/validate", AdminAuth, HomeController.validate);
-router.post("/role", AdminAuth, RoleController.create);
-router.post("/doctor", AdminAuth, DoctorController.create);
-router.post("/schedule", AdminAuth, ScheduleController.create);
+router.post("/validate", HomeController.validate);
+router.post("/role", RoleController.create);
+router.post("/doctor", DoctorController.create);
+router.post("/schedule", ScheduleController.create);
 
 module.exports = router;

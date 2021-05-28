@@ -3,18 +3,18 @@ import DashboardLayout from "@/layout/dashboard/DashboardLayout.vue";
 import NotFound from "@/pages/NotFoundPage.vue";
 
 // Admin pages
-const Dashboard = () => import("@/pages/Dashboard.vue");
+const Dashboard = () => import("@/pages/Admin/Dashboard.vue");
 const Profile = () => import("@/pages/Profile.vue");
 const Login = () => import("@/pages/Login.vue");
 const Register = () => import("@/pages/Register.vue");
-const Role = () => import("@/pages/Role.vue");
-const Specialty = () => import("@/pages/Specialty.vue");
-const Doctor = () => import("@/pages/Doctor.vue");
-const Schedule = () => import("@/pages/Schedule.vue");
-const ChangeAvatar = () => import("@/pages/ChangeAvatar.vue");
-const AnswerInquiry = () => import("@/pages/querys/AnswerInquiry.vue");
-const Tomeet = () => import("@/pages/querys/Tomeet.vue");
-const ConsultationHistory = () => import("@/pages/querys/ConsultationHistory.vue");
+const Role = () => import("@/pages/Admin/Role.vue");
+const Specialty = () => import("@/pages/Admin/Specialty.vue");
+const Doctor = () => import("@/pages/Admin/Doctor.vue");
+const Schedule = () => import("@/pages/Employee/Schedule.vue");
+const ChangeAvatar = () => import("@/pages/Employee/ChangeAvatar.vue");
+const AnswerInquiry = () => import("@/pages/Doctor/AnswerInquiry.vue");
+const Tomeet = () => import("@/pages/Employee/Tomeet.vue");
+const ConsultationHistory = () => import("@/pages/Employee/ConsultationHistory.vue");
 
 const routes = [
   {
@@ -23,7 +23,7 @@ const routes = [
     redirect: "/dashboard",
     children: [
       {
-        path: "dashboard",
+        path: "admin/dashboard",
         name: "dashboard",
         component: Dashboard
       },
@@ -43,42 +43,42 @@ const routes = [
         component: Register
       },
       {
-        path: "role",
+        path: "admin/role",
         name: "role",
         component: Role
       },
       {
-        path: "specialty",
+        path: "admin/specialty",
         name: "specialty",
         component: Specialty
       },
       {
-        path: "doctor",
+        path: "/admin/doctor",
         name: "doctor",
         component: Doctor
       },
       {
-        path: "schedule",
+        path: "/employee/schedule",
         name: "schedule",
         component: Schedule
       },
       {
-        path: "changeavatar",
+        path: "employee/changeavatar",
         name: "changeavatar",
         component: ChangeAvatar
       },
       {
-        path: "answerInquiry",
+        path: "doctor/answerInquiry",
         name: "answerInquiry",
         component: AnswerInquiry
       },
       {
-        path: "tomeet",
+        path: "Employee/tomeet",
         name: "tomeet",
         component: Tomeet
       },
       {
-        path: "querys/consultationHistory",
+        path: "Employee/consultationHistory",
         name: "consultationHistory",
         component: ConsultationHistory
       },

@@ -27,7 +27,6 @@ class UserController{
 
     async create(req, res){
         var {email, nome, senha, nascimento, cpf, telefone, sus_card, rg, pais, cidade, cep, rua, bairro, numero, ponto_de_referencia} = req.body;
-        
         // Valida Nome
         if(nome == undefined  || nome == '' || nome == ' '){
             res.status(400);
@@ -96,7 +95,6 @@ class UserController{
             res.json({err: "O e-mail já está cadastrado!"})
             return;
         }
-        console.log('Passou na linha 99');
         var result = await AdressController.create(pais, cidade, cep, rua, bairro, numero, ponto_de_referencia);
         if (result.err != undefined){
             console.log('Passou na linha 102' + result.err);
@@ -104,7 +102,6 @@ class UserController{
             res.json({err: result.err});
             return;
         }
-        console.log('Passou na linha 106');
         if(result.endereco != "Erro"){
             console.log('Passou na linha 108' + result.endereco);
             await User.new(nome, senha, nascimento, cpf, telefone, sus_card, rg, email, result.endereco);
@@ -128,7 +125,8 @@ class UserController{
                 res.status(406);
                 res.send(result.err)
             }
-        }else{
+        }
+        else {
             res.status(406);
             res.send("Ocorreu um erro no servidor!");
         }
@@ -136,39 +134,39 @@ class UserController{
 
     async remove(req, res){
         var id = req.params.id;
-
         var result = await User.delete(id);
-
         if(result.status){
             res.status(200);
             res.send("Tudo OK!");
-        }else{
+        }
+        else {
             res.status(406);
             res.send(result.err);
         }
     }
 
     async recoverPassword(req, res){
-        var email = req.body.email;
+        var {email} = req.body;
         var result = await PasswordToken.create(email);
         if(result.status){
            res.status(200);
            res.send("" + result.token);
-        }else{
+        }
+        else {
             res.status(406)
-            res.send(result.err);
+            res.send(result.err)
         }
     }
 
     async changePassword(req, res){
-        var token = req.body.token;
-        var password = req.body.password;
+        var {token, password} = req.body;
         var isTokenValid = await PasswordToken.validate(token);
         if(isTokenValid.status){
             await User.changePassword(password,isTokenValid.token.user_id,isTokenValid.token.token);
             res.status(200);
             res.send("Senha alterada");
-        }else{
+        }
+        else {
             res.status(406);
             res.send("Token inválido!");
         }
@@ -176,20 +174,15 @@ class UserController{
 
     async login(req, res){
         var {email, password } = req.body;
-        var user = await User.findByEmail(email);
+        var user = await User.login(email,password);
         if(user != undefined){
-            var resultado = await bcrypt.compare(password,user.senha);
-            if(resultado){
-                var token = jwt.sign({ email: user.email, cargo: user.cargo }, secret);
-                res.status(200);
-                res.json({token: token, usuario: user.nome});
-            }else{
-                res.status(406);
-                res.json({err: "Senha incorreta"});
-            }
-        }else{
+            var token = jwt.sign({ id: user.id, cargo: user.cargo }, secret);
+            res.status(200);
+            res.json({token: token});
+        }
+        else {
             res.status(406);
-            res.json({status: false, err: "O usuário não existe!"});
+            res.json({status: false, err: "Usuário/Senha incorreto!"});
         }
     }
 }

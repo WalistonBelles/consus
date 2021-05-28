@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 style="color: #122c77;">Cadastro de Consulta!</h2>    
+        <h2>Cadastro de Especialidades!</h2>    
         <hr>
         <card>
             <form>
@@ -10,15 +10,14 @@
                     </base-alert>
                 </div>
                 <div class="form-row">
-                    <base-input class="col-md-6" type="text" label="CRM do Médico" placeholder="CRM do Médico" v-model="Medico"/>
-                    <base-input class="col-md-6" type="text" label="CPF do Paciente" placeholder="CPF do Paciente" v-model="Paciente"/>
-                    <base-input class="col-md-3" label="Selecione a Unidade">
-                      <select id="inputState" class="form-control" v-model="Unidade">
+                    <base-input class="col-md-6" type="text" label="CRM do Médico" placeholder="CRM do Médico" v-model="crm"/>
+                    <base-input class="col-md-6" type="text" label="CPF do Médico" placeholder="CPF do Médico" v-model="cpf"/>
+                    <base-input class="col-md-3" label="Selecione a Especialidade">
+                      <select id="inputState" class="form-control" v-model="especialidade">
                         <option selected>Selecionar...</option>
-                        <option v-for="requesting in requestings" :key="requesting.id">{{requesting.nome}}</option>
+                        <option v-for="speciality in specialitys" :key="speciality.id">{{speciality.nome}}</option>
                       </select>
                     </base-input>
-                    <base-input class="col-md-6" type="text" label="Data do Registro" placeholder="Data do Registro" v-model="Data"/>
                 </div>
                 <base-button class="animation-on-hover" type="success" @click="register">Cadastrar</base-button>
             </form>
@@ -27,14 +26,14 @@
 </template>
 
 <script>
-import BaseAlert from "../components/BaseAlert";
-import BaseButton from "../components/BaseButton";
+import BaseAlert from "../../components/BaseAlert";
+import BaseButton from "../../components/BaseButton";
 import api from '@/services/api';
 export default {
-    created(){
-        api.get("/requestingUnit").then(res => {
+  created(){
+        api.get("/specialty").then(res => {
             console.log(res);
-            this.requestings = res.data;
+            this.specialitys = res.data;
         }).catch(err => {
             console.log("Deu Erro");
             console.log(err);
@@ -42,11 +41,10 @@ export default {
     },
     data(){
         return {
-            requestings: [],
-            Unidade: '',
-            Paciente: '', 
-            Medico: '', 
-            Data: '',
+            specialitys: [],
+            crm: '',
+            especialidade: '',
+            cpf: '',
             error: undefined,
         }
     },
@@ -56,11 +54,10 @@ export default {
     },
     methods: {
         register(){
-            api.post("/query",{
-                Unidade: this.Unidade,
-                Paciente: this.Paciente, 
-                Medico: this.Medico, 
-                Data: this.Data
+            api.post("/doctor",{
+                crm: this.crm,
+                especialidade: this.especialidade,
+                cpf: this.cpf
             }).then(res => {
                 console.log(res);
                 this.$router.push({name: 'dashboard'});

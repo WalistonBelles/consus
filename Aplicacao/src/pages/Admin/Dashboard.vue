@@ -51,7 +51,7 @@
                     <div class="card-header">Cargo</div>
                     <div class="card-body">
                         <p class="card-text">Cadastrar um novo cargo.</p>
-                        <a href="#/role"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Cargo</base-button></a>
+                        <a href="#/admin/role"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Cargo</base-button></a>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                     <div class="card-header">Especialidade</div>
                     <div class="card-body">
                         <p class="card-text">Cadastrar nova especialidade.</p>
-                        <a href="#/specialty"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Especialidade</base-button></a>
+                        <a href="#/admin/specialty"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Especialidade</base-button></a>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                     <div class="card-header">Médico</div>
                     <div class="card-body">
                         <p class="card-text">Adicionar novo médico.</p>
-                        <a href="#/doctor"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Médico</base-button></a>
+                        <a href="#/admin/doctor"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Médico</base-button></a>
                     </div>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                     <div class="card-body">
                         <p class="card-text">Cadastrar nova consulta.</p>
                     </div>
-                    <div class="card-footer"><a href="#/schedule"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Agenda</base-button></a></div>
+                    <div class="card-footer"><a href="#/employee/schedule"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Agenda</base-button></a></div>
                 </div>
             </div>
             <div class="col-sm-3">
@@ -88,7 +88,7 @@
                     <div class="card-body">
                         <p class="card-text">Histórico de Paciente.</p>
                     </div>
-                    <div class="card-footer"><a href="#/querys/consultationHistory"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Historico</base-button></a></div>
+                    <div class="card-footer"><a href="#/employee/consultationHistory"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Historico</base-button></a></div>
                 </div>
             </div>
             <div class="col-sm-3">
@@ -97,7 +97,7 @@
                     <div class="card-body">
                         <p class="card-text">Consultas</p>
                     </div>
-                    <div class="card-footer"><a href="#/answerInquiry"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Consultas</base-button></a></div>
+                    <div class="card-footer"><a href="#/doctor/answerInquiry"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Consultas</base-button></a></div>
                 </div>
             </div>
         </div>
@@ -105,8 +105,8 @@
 </template>
 
 <script>
-import BaseAlert from "../components/BaseAlert";
-import BaseButton from "../components/BaseButton";
+import BaseAlert from "../../components/BaseAlert";
+import BaseButton from "../../components/BaseButton";
 import api from '@/services/api';
 export default {
     created(){

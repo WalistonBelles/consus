@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import BaseAlert from "../components/BaseAlert";
-import BaseButton from "../components/BaseButton";
+import BaseAlert from "../../components/BaseAlert";
+import BaseButton from "../../components/BaseButton";
 import api from '@/services/api';
 export default {
     data(){

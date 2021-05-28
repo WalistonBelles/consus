@@ -4,6 +4,7 @@ class Specialty {
     async findAll(){
         try{
             var result = await knex.select(["id","nome"]).table("especialidade");
+            console.log(result);
             return result;
         }catch(err){
             console.log(err);

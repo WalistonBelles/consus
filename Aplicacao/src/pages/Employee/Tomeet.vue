@@ -23,7 +23,7 @@
                     class="border-0 mb-0">
                   <template>
                     <div class="text-center text-muted mb-4">
-                        <small>Selecione o Exame e o Médico a Realizar o mesmo!</small>
+                        <small>Selecione o Exame e a Unidade a Realizar o mesmo!</small>
                     </div>
                     <base-input class="col-md-6" label="Selecione o Exame">
                       <select id="inputState" class="form-control" v-model="exame" @change="unidadeProcura()">

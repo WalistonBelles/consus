@@ -1,6 +1,7 @@
 var knex = require("../database/connection");
 var bcrypt = require("bcrypt");
 const PasswordToken = require("./PasswordToken");
+var jwt = require("jsonwebtoken");
 
 class User{
 
@@ -186,6 +187,21 @@ class User{
         var hash = await bcrypt.hash(newPassword, 10);
         await knex.update({password: hash}).where({id: id}).table("usuario");
         await PasswordToken.setUsed(token);
+    }
+    // Login
+    async login(email, password){
+        try{
+            var user = await this.findByEmail(email);
+            if(user != undefined){
+                var resultado = await bcrypt.compare(password,user.senha);
+                if(resultado){
+                    return user;
+                }
+            }
+            return undefined;
+        }catch(err){
+            return undefined;
+        }
     }
 }
 

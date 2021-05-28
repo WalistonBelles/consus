@@ -3,6 +3,7 @@ var Specialty = require("../models/Specialty");
 class SpecialtyController{
     async index(req, res){
         var specialtys = await Specialty.findAll();
+        console.log(specialtys);
         res.json(specialtys);
     }
     async create(req, res){
