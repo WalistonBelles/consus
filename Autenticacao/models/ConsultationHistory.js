@@ -44,9 +44,9 @@ class ConsultationHistory {
     */
 
     // Registra uma nova Consulta no histórico do Paciente
-    async new(ID_Medico, ID_Paciente, ID_Unidade, descricao, data){
+    async new(ID_Medico, ID_Paciente, ID_Unidade, descricao, data, id_consulta){
         try{
-            await knex.insert({ID_Medico, ID_Paciente, ID_Unidade, descricao, data}).table("historico_de_consultas");
+            await knex.insert({ID_Medico, ID_Paciente, ID_Unidade, descricao, data, id_consulta}).table("historico_de_consultas");
         }catch(err){
             console.log(err);
         }

@@ -124,7 +124,7 @@ class QueryController{
             var resultExame = await Exam.findByName(exame, resultUnidade.id);
             var resultQueue = await Queue.new(resultExame.id, ID_Paciente, resultUnidade.id);
         }
-        await ConsultationHistory.new(ID_Medico, ID_Paciente, ID_Unidade, descricao, data);
+        await ConsultationHistory.new(ID_Medico, ID_Paciente, ID_Unidade, descricao, data, id);
         var result = await Query.update(id);
         if(result != undefined){
             if(result.status){
