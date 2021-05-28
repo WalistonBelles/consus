@@ -120,9 +120,9 @@ class QueryController{
             return;
         }
         if (exame != undefined && exame != '' && exame != ' ' && unidade != undefined && unidade != '' && unidade != ' '){
-            var resultUnidade = PerformerUnit.findByNome(unidade);
-            var resultExame = Exam.findByName(exame, resultUnidade.id);
-            var resultQueue = await Queue.new(resultExame.id, ID_Paciente, resultExame.id);
+            var resultUnidade = await PerformerUnit.findByNomeUnidade(unidade);
+            var resultExame = await Exam.findByName(exame, resultUnidade.id);
+            var resultQueue = await Queue.new(resultExame.id, ID_Paciente, resultUnidade.id);
         }
         await ConsultationHistory.new(ID_Medico, ID_Paciente, ID_Unidade, descricao, data);
         var result = await Query.update(id);

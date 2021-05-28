@@ -14,8 +14,8 @@ class Exam {
     async findByName(nome, id_unidade){
         try{
             var result = await knex
-            .select(["id"])
-            .whereRaw('`unidade executante.nome` = "' + nome + '" AND `exame.id_Unidade` = ' + id_unidade)
+            .select(["exame.id"])
+            .whereRaw('`unidade executante`.`id` = ' + id_unidade + ' AND `exame`.`nome` = "' + nome + '"')
             .innerJoin('unidade executante', 'exame.id_Unidade', 'unidade executante.id')
             .table("exame");
             return result[0];

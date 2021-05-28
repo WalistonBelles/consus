@@ -42,5 +42,19 @@ class PerformerUnit {
             return undefined;
         }
     }
+    // Retorna todas a unidade solicitante baseada no ID
+    async findByNomeUnidade(nome){
+        try{
+            var result = await knex.select(["id"]).where({nome: nome}).table("unidade executante");
+            if(result.length > 0){
+                return result[0];
+            }else{
+                return undefined;
+            }
+        }catch(err){
+            console.log(err);
+            return undefined;
+        }
+    }
 }
 module.exports = new PerformerUnit();
