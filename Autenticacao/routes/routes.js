@@ -13,6 +13,7 @@ var PerformerUnitController = require("../controllers/PerformerUnitController");
 var ExamController = require("../controllers/ExamController");
 var ConsultationHistory = require("../controllers/ConsultationHistoryController");
 var QueryController = require("../controllers/QueryController");
+var PatientController = require("../controllers/PatientController");
 var AdminAuth = require("../middleware/AdminAuth");
 var DoctorAuth = require("../middleware/DoctorAuth");
 var EmployeeAuth = require("../middleware/EmployeeAuth");
@@ -34,6 +35,7 @@ router.post("/changepassword", UserController.changePassword);
 
 // Área de Funcionário
 router.post('/user', UserController.create);
+router.post('/patient', PatientController.create);
 router.post("/adress", AdressController.create);
 router.post("/consultationhistory", ConsultationHistory.create);
 router.post("/usercpf", ConsultationHistory.index);
@@ -45,7 +47,7 @@ router.get("/exam", ExamController.index);
 
 // Área de Médico
 router.post("/answerInquiry", QueryController.index);
-router.get("/querys", QueryController.indexConsultas);
+router.get("/querys", AdminAuth, QueryController.indexConsultas);
 router.put("/query", QueryController.edit);
 
 
@@ -53,8 +55,8 @@ router.put("/query", QueryController.edit);
 router.get("/user", AdminAuth, UserController.index);
 router.get("/user/:id", AdminAuth, UserController.findUser);
 router.get("/specialty", SpecialtyController.index);
-router.get("/doctor", DoctorController.index);
-router.get("/consultationhistory", ConsultationHistory.indexConsultas);
+router.get("/doctor", AdminAuth, DoctorController.index);
+router.get("/consultationhistory", AdminAuth, ConsultationHistory.indexConsultas);
 router.get("/user", UserController.index);
 router.put("/user", AdminAuth, UserController.edit);
 router.delete("/user/:id",AdminAuth, UserController.remove);

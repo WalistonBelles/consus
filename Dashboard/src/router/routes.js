@@ -10,6 +10,7 @@ const Register = () => import("@/pages/Register.vue");
 const Role = () => import("@/pages/Admin/Role.vue");
 const Specialty = () => import("@/pages/Admin/Specialty.vue");
 const Doctor = () => import("@/pages/Admin/Doctor.vue");
+const DoctorDashboard = () => import("@/pages/Doctor/Dashboard.vue");
 const Schedule = () => import("@/pages/Employee/Schedule.vue");
 const ChangeAvatar = () => import("@/pages/Employee/ChangeAvatar.vue");
 const AnswerInquiry = () => import("@/pages/Doctor/AnswerInquiry.vue");
@@ -20,7 +21,7 @@ const routes = [
   {
     path: "/",
     component: DashboardLayout,
-    redirect: "/dashboard",
+    redirect: "/login",
     children: [
       {
         path: "admin/dashboard",
@@ -66,6 +67,11 @@ const routes = [
         path: "employee/changeavatar",
         name: "changeavatar",
         component: ChangeAvatar
+      },
+      {
+        path: "doctor/dashboard",
+        name: "doctor_dashboard",
+        component: DoctorDashboard
       },
       {
         path: "doctor/answerInquiry",

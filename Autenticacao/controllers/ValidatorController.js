@@ -4,8 +4,16 @@ class ValidatorController{
         res.send("APP EXPRESS!");
     }
 
-    async validarEndereco(req, res){
-        res.send("ok");
+    async validarPageAcess(role){
+        if (role == 5){
+            return '/Admin/Dashboard';
+        } else if (role == 4){
+            return '/Doctor/Dashboard';
+        } else if (role == 3) {
+            return 'Register';
+        }else {
+            return undefined;
+        }
     }
 
 }

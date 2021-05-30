@@ -2,7 +2,7 @@
     <div style="text-align: center;">
         <h1 style="color: #122c77;">Painel Adm!</h1>
         <div class="row">
-            <div class="col-sm-3">
+            <div v-if="users != undefined" class="col-sm-3">
                 <div class="card">
                     <div class="card-bg-green">Usuários</div>
                     <div class="card-body">
@@ -10,7 +10,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div v-if="doctors != undefined" class="col-sm-3">
                 <div class="card">
                     <div class="card-bg-green">Médicos</div>
                     <div class="card-body">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div v-if="schedules != undefined" class="col-sm-3">
                 <div class="card">
                     <div class="card-bg-green">Consultas Atendidas</div>
                     <div class="card-body">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div v-if="querys != undefined" class="col-sm-3">
                 <div class="card">
                     <div class="card-bg-green">Consultas Pendentes</div>
                     <div class="card-body">
@@ -118,23 +118,22 @@ export default {
         api.get("/user",req).then(res => {
             this.users = res.data;
         }).catch(err => {
-            console.log(err);
-            this.$router.push({name: 'login'});
+            this.users = undefined;
         })
         api.get("/doctor",req).then(res => {
             this.doctors = res.data;
         }).catch(err => {
-            console.log(err);
+            this.doctors = undefined;
         })
         api.get("/consultationhistory",req).then(res => {
             this.schedules = res.data;
         }).catch(err => {
-            console.log(err);
+            this.schedules = undefined;
         })
         api.get("/querys",req).then(res => {
             this.querys = res.data;
         }).catch(err => {
-            console.log(err);
+            this.querys = undefined;
         })
     },
     data()

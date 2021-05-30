@@ -46,7 +46,6 @@
                     email: this.email
                 }).then(res => {
                     localStorage.setItem('token',res.data.token);
-                    localStorage.setItem('usuario',res.data.usuario);
                     this.$router.push({name: 'dashboard'});
                 }).catch(err => {
                     var msgErro = err.response.data.err;
