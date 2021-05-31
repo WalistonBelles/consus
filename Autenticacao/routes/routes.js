@@ -34,6 +34,7 @@ router.post("/recoverpassword", UserController.recoverPassword);
 router.post("/changepassword", UserController.changePassword);
 
 // Área de Funcionário
+router.get('/confirmEmployee', EmployeeAuth, DoctorController.index);
 router.post('/user', UserController.create);
 router.post('/patient', PatientController.create);
 router.post("/adress", AdressController.create);

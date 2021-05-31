@@ -51,7 +51,7 @@
                     }else if(res.data.cargo == 4){
                         this.$router.push({name: 'doctor_dashboard'});
                     }else {
-                        this.$router.push({name: 'register'});
+                        this.$router.push({name: 'employee_dashboard'});
                     }
                 }).catch(err => {
                     var msgErro = err.response.data.err;

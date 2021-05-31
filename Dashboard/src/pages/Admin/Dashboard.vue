@@ -127,22 +127,22 @@ export default {
         api.get("/user",req).then(res => {
             this.users = res.data;
         }).catch(err => {
-            this.users = undefined;
+            this.$router.push({name: 'nopermission'});
         })
         api.get("/doctor",req).then(res => {
             this.doctors = res.data;
         }).catch(err => {
-            this.doctors = undefined;
+            this.$router.push({name: 'nopermission'});
         })
         api.get("/consultationhistory",req).then(res => {
             this.schedules = res.data;
         }).catch(err => {
-            this.schedules = undefined;
+            this.$router.push({name: 'nopermission'});
         })
         api.get("/querys",req).then(res => {
             this.querys = res.data;
         }).catch(err => {
-            this.querys = undefined;
+            this.$router.push({name: 'nopermission'});
         })
     },
     data()

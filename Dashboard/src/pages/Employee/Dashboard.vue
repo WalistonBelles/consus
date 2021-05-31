@@ -5,6 +5,15 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="card">
+                    <div class="card-header">Pacientes</div>
+                    <div class="card-body">
+                        <p class="card-text">Cadastrar um novo Paciente.</p>
+                        <div class="card-footer"><a href="#/employee/newpatient"><base-button type="success"><i class="tim-icons icon-single-02"></i> Paciente</base-button></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
                     <div class="card-header">Histórico Paciente</div>
                     <div class="card-body">
                         <p class="card-text">Histórico de Paciente.</p>
@@ -14,11 +23,11 @@
             </div>
             <div class="col-sm-3">
                 <div class="card">
-                    <div class="card-header">Consultas</div>
+                    <div class="card-header">Agenda</div>
                     <div class="card-body">
-                        <p class="card-text">Consultas</p>
+                        <p class="card-text">Cadastrar nova consulta.</p>
                     </div>
-                    <div class="card-footer"><a href="#/doctor/answerInquiry"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Consultas</base-button></a></div>
+                    <div class="card-footer"><a href="#/employee/schedule"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Agenda</base-button></a></div>
                 </div>
             </div>
         </div>
@@ -34,7 +43,7 @@ export default {created(){
                 Authorization: "Bearer " + localStorage.getItem('token')
             }
         }
-        api.get("/confirmDoctor",req).then(res => {
+        api.get("/confirmEmployee",req).then(res => {
             this.users = res.data;
         }).catch(err => {
             console.log(err);

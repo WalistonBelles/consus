@@ -13,6 +13,7 @@ const DoctorDashboard = () => import("@/pages/Doctor/Dashboard.vue");
 const AnswerInquiry = () => import("@/pages/Doctor/AnswerInquiry.vue");
 
 // Employee Pages
+const EmployeeDashboard = () => import("@/pages/Employee/Dashboard.vue");
 const Schedule = () => import("@/pages/Employee/Schedule.vue");
 const ChangeAvatar = () => import("@/pages/Employee/ChangeAvatar.vue");
 const Tomeet = () => import("@/pages/Employee/Tomeet.vue");
@@ -23,6 +24,7 @@ const NewPatient = () => import("@/pages/Employee/NewPatient.vue");
 const Profile = () => import("@/pages/Profile.vue");
 const Login = () => import("@/pages/Login.vue");
 const Register = () => import("@/pages/Register.vue");
+const NoPermission = () => import("@/pages/NoPermission.vue");
 
 const routes = [
   {
@@ -71,6 +73,11 @@ const routes = [
         component: Schedule
       },
       {
+        path: "/employee/dashboard",
+        name: "employee_dashboard",
+        component: EmployeeDashboard
+      },
+      {
         path: "employee/changeavatar",
         name: "changeavatar",
         component: ChangeAvatar
@@ -99,6 +106,11 @@ const routes = [
         path: "Employee/newpatient",
         name: "newpatient",
         component: NewPatient
+      },
+      {
+        path: "nopermission",
+        name: "nopermission",
+        component: NoPermission
       },
     ]
   },
