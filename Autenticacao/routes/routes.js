@@ -46,10 +46,10 @@ router.post("/performerUnit", PerformerUnitController.findUnit);
 router.get("/exam", ExamController.index);
 
 // Área de Médico
+router.get('/confirmDoctor', DoctorAuth, DoctorController.index);
 router.post("/answerInquiry", QueryController.index);
 router.get("/querys", QueryController.indexConsultas);
 router.put("/query", QueryController.edit);
-
 
 // Área de Administrador
 router.get("/user", AdminAuth, UserController.index);

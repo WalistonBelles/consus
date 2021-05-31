@@ -46,7 +46,13 @@
                     email: this.email
                 }).then(res => {
                     localStorage.setItem('token',res.data.token);
-                    this.$router.push({name: 'dashboard'});
+                    if(res.data.cargo == 5){
+                        this.$router.push({name: 'dashboard'});
+                    }else if(res.data.cargo == 4){
+                        this.$router.push({name: 'doctor_dashboard'});
+                    }else {
+                        this.$router.push({name: 'register'});
+                    }
                 }).catch(err => {
                     var msgErro = err.response.data.err;
                     this.error = msgErro;

@@ -178,7 +178,7 @@ class UserController{
         if(user != undefined){
             var token = jwt.sign({ id: user.id, cargo: user.cargo }, secret);
             res.status(200);
-            res.json({token: token});
+            res.json({token: token, cargo: user.cargo});
         }
         else {
             res.status(406);
