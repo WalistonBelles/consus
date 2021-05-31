@@ -11,6 +11,22 @@ class Patient{
         }
     } 
 
+    async findById(id){
+        try{
+            var result = await knex.select(["id","nome","cpf"]).where({id:id}).table("paciente");
+            
+            if(result.length > 0){
+                return result[0];
+            }else{
+                return undefined;
+            }
+
+        }catch(err){
+            console.log(err);
+            return undefined;
+        }
+    }
+
     async findEmail(email){
         try{
             var result = await knex.select(["id","email", "nome"]).where({email:email}).table("paciente");

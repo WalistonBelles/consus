@@ -4,18 +4,25 @@ import NotFound from "@/pages/NotFoundPage.vue";
 
 // Admin pages
 const Dashboard = () => import("@/pages/Admin/Dashboard.vue");
-const Profile = () => import("@/pages/Profile.vue");
-const Login = () => import("@/pages/Login.vue");
-const Register = () => import("@/pages/Register.vue");
 const Role = () => import("@/pages/Admin/Role.vue");
 const Specialty = () => import("@/pages/Admin/Specialty.vue");
 const Doctor = () => import("@/pages/Admin/Doctor.vue");
+
+// Doctor Pages
 const DoctorDashboard = () => import("@/pages/Doctor/Dashboard.vue");
+const AnswerInquiry = () => import("@/pages/Doctor/AnswerInquiry.vue");
+
+// Employee Pages
 const Schedule = () => import("@/pages/Employee/Schedule.vue");
 const ChangeAvatar = () => import("@/pages/Employee/ChangeAvatar.vue");
-const AnswerInquiry = () => import("@/pages/Doctor/AnswerInquiry.vue");
 const Tomeet = () => import("@/pages/Employee/Tomeet.vue");
 const ConsultationHistory = () => import("@/pages/Employee/ConsultationHistory.vue");
+const NewPatient = () => import("@/pages/Employee/NewPatient.vue");
+
+// Free Pages
+const Profile = () => import("@/pages/Profile.vue");
+const Login = () => import("@/pages/Login.vue");
+const Register = () => import("@/pages/Register.vue");
 
 const routes = [
   {
@@ -87,6 +94,11 @@ const routes = [
         path: "Employee/consultationHistory",
         name: "consultationHistory",
         component: ConsultationHistory
+      },
+      {
+        path: "Employee/newpatient",
+        name: "newpatient",
+        component: NewPatient
       },
     ]
   },

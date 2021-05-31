@@ -1,13 +1,13 @@
 var ConsultationHistory = require("../models/ConsultationHistory");
 var Doctor = require("../models/Doctor");
-var User = require("../models/User");
+var Patient = require("../models/Patient");
 var RequestingUnit = require("../models/RequestingUnit");
 
 class ConsultationHistoryController{
     async index(req, res){
         var {cpf} = req.body;
         // Confere se o paciente existe
-        var resultadoCPF = await User.findCPF(cpf);
+        var resultadoCPF = await Patient.findCPF(cpf);
         if(resultadoCPF == undefined){
             res.status(400);
             res.json({err: "Este paciente não está cadastrado!"});
@@ -69,7 +69,7 @@ class ConsultationHistoryController{
             return;
         }
         // Confere se o paciente existe
-        var resultadoCPF = await User.findCPF(cpf);
+        var resultadoCPF = await Patient.findCPF(cpf);
         if(resultadoCPF == undefined){
             res.status(400);
             res.json({err: "O paciente não está cadastrado!"});

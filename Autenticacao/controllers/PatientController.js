@@ -6,6 +6,19 @@ class PatientController{
         var Patients = await Patient.findAll();
         res.json(Patients);
     }
+
+    async findUser(req, res){
+        var id = req.params.id;
+        var patient = await Patient.findById(id);
+        if(patient == undefined){
+            res.status(404);
+            res.json({});
+        }else{
+            res.status(200)
+            res.json(patient);
+        }
+    }
+
     async create(req, res){
         var {email, nome, nascimento, cpf, telefone, sus_card, rg, pais, cidade, cep, rua, bairro, numero, ponto_de_referencia} = req.body;
         // Valida Nome

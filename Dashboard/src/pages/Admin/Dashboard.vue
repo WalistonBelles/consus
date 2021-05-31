@@ -48,6 +48,15 @@
             </div>
             <div class="col-sm-3">
                 <div class="card">
+                    <div class="card-header">Pacientes</div>
+                    <div class="card-body">
+                        <p class="card-text">Cadastrar um novo Paciente.</p>
+                        <a href="#/employee/newpatient"><base-button type="success"><i class="tim-icons icon-single-02"></i> Paciente</base-button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
                     <div class="card-header">Cargo</div>
                     <div class="card-body">
                         <p class="card-text">Cadastrar um novo cargo.</p>

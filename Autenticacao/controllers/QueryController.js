@@ -1,11 +1,11 @@
 var Query = require("../models/Query");
 var Doctor = require("../models/Doctor");
-var User = require("../models/User");
 var RequestingUnit = require("../models/RequestingUnit");
 var ConsultationHistory = require("../models/ConsultationHistory");
 var PerformerUnit = require("../models/PerformerUnit");
 var Exam = require("../models/Exam");
 var Queue = require("../models/Queue");
+var Patient = require("../models/Patient");
 
 class QueryController{
 
@@ -69,7 +69,7 @@ class QueryController{
             return;
         }
         // Confere se o paciente existe
-        var resultadoCPF = await User.findCPF(Paciente);
+        var resultadoCPF = await Patient.findCPF(Paciente);
         if(resultadoCPF == undefined){
             res.status(400);
             res.json({err: "O paciente não está cadastrado!"});

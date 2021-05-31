@@ -14,12 +14,12 @@ class Query {
     async findAll(id_medico){
         try{
             var result = await knex.
-            select(["consulta.id as conid", "unidade solicitante.nome", "consulta.id_Unidade as unid", "consulta.id_Medico as medid", "usuario.nome as unome", "consulta.id_Paciente as pacid", "medico.id_usuario", "consulta.data", "consulta.atendida"])
+            select(["consulta.id as conid", "unidade solicitante.nome", "consulta.id_Unidade as unid", "consulta.id_Medico as medid", "paciente.nome as unome", "consulta.id_Paciente as pacid", "medico.id_usuario", "consulta.data", "consulta.atendida"])
             .whereRaw('`id_Medico` = ' + id_medico + ' AND `atendida` = 0')
             .innerJoin('unidade solicitante', 'consulta.id_Unidade', 'unidade solicitante.id')
-            .innerJoin('usuario', 'consulta.id_Paciente', 'usuario.id')
+            .innerJoin('paciente', 'consulta.id_Paciente', 'paciente.id')
             .innerJoin('medico', 'consulta.id_Medico', 'medico.id')
-            .as('usuario')
+            .as('paciente')
             .as('unidade solicitante')
             .as('medico')
             .as('consulta')

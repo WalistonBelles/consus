@@ -14,12 +14,12 @@ class ConsultationHistory {
     async findAll(id_paciente){
         try{
             var result = await knex.
-            select(["usuario.nome as unome","medico.id_usuario", "unidade solicitante.nome", "historico_de_consultas.descricao", "historico_de_consultas.data"])
+            select(["paciente.nome as unome","medico.id_usuario", "unidade solicitante.nome", "historico_de_consultas.descricao", "historico_de_consultas.data"])
             .where({ID_Paciente:id_paciente})
-            .innerJoin('usuario', 'historico_de_consultas.ID_Paciente', 'usuario.id')
+            .innerJoin('paciente', 'historico_de_consultas.ID_Paciente', 'paciente.id')
             .innerJoin('medico', 'historico_de_consultas.ID_Medico', 'medico.id')
             .innerJoin('unidade solicitante', 'historico_de_consultas.ID_Unidade', 'unidade solicitante.id')
-            .as('usuario')
+            .as('paciente')
             .table("historico_de_consultas");
             return result;
         }catch(err){
@@ -36,13 +36,6 @@ class ConsultationHistory {
             return [];
         }
     }
-
-    /*
-        knex.from('users').innerJoin('accounts', 'users.id', 'accounts.user_id')
-        Outputs:
-        select * from `users` inner join `accounts` on `users`.`id` = `accounts`.`user_id`
-    */
-
     // Registra uma nova Consulta no histórico do Paciente
     async new(ID_Medico, ID_Paciente, ID_Unidade, descricao, data, id_consulta){
         try{

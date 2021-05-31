@@ -67,7 +67,7 @@ export default {
     },
     methods: {
         consultar(){
-            api.post("/usercpf",{
+            api.post("/patientcpf",{
                 cpf: this.cpf
             }).then(res => {
                 this.querys = res.data;

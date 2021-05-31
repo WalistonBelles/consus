@@ -67,7 +67,7 @@ export default {
                 Authorization: "Bearer " + localStorage.getItem('token')
             }
         }
-        api.get("/user/" + this.$route.params.paciente_id, req)
+        api.get("/patient/" + this.$route.params.paciente_id, req)
         .then(res => {
             this.name = res.data.nome;
         }).catch(err => {
