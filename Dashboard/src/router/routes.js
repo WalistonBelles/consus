@@ -7,6 +7,7 @@ const Dashboard = () => import("@/pages/Admin/Dashboard.vue");
 const Role = () => import("@/pages/Admin/Role.vue");
 const Specialty = () => import("@/pages/Admin/Specialty.vue");
 const Doctor = () => import("@/pages/Admin/Doctor.vue");
+const Register = () => import("@/pages/Admin/Register.vue");
 
 // Doctor Pages
 const DoctorDashboard = () => import("@/pages/Doctor/Dashboard.vue");
@@ -23,7 +24,6 @@ const NewPatient = () => import("@/pages/Employee/NewPatient.vue");
 // Free Pages
 const Profile = () => import("@/pages/Profile.vue");
 const Login = () => import("@/pages/Login.vue");
-const Register = () => import("@/pages/Register.vue");
 const NoPermission = () => import("@/pages/NoPermission.vue");
 
 const routes = [
@@ -48,7 +48,7 @@ const routes = [
         component: Login
       },
       {
-        path: "register",
+        path: "admin/register",
         name: "register",
         component: Register
       },

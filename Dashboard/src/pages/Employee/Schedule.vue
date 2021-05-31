@@ -32,6 +32,17 @@ import BaseButton from "../../components/BaseButton";
 import api from '@/services/api';
 export default {
     created(){
+        var req = {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem('token')
+            }
+        }
+        api.get("/confirmEmployee",req).then(res => {
+            this.users = res.data;
+        }).catch(err => {
+            console.log(err);
+            this.$router.push({name: 'nopermission'});
+        })
         api.get("/requestingUnit").then(res => {
             console.log(res);
             this.requestings = res.data;
@@ -42,6 +53,7 @@ export default {
     },
     data(){
         return {
+            users: [],
             requestings: [],
             Unidade: '',
             Paciente: '', 

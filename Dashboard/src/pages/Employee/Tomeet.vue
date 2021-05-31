@@ -54,6 +54,17 @@ import Modal from '@/components/Modal';
 import api from '@/services/api';
 export default {
     created(){
+        var req = {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem('token')
+            }
+        }
+        api.get("/confirmEmployee",req).then(res => {
+            this.users = res.data;
+        }).catch(err => {
+            console.log(err);
+            this.$router.push({name: 'nopermission'});
+        })
         api.get("/exam")
         .then(res => {
             this.exams = res.data;
@@ -77,6 +88,7 @@ export default {
     },
     data(){
         return {
+            users: [],
             exams: [],
             exame: '',
             units: [],

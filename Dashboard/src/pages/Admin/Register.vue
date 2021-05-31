@@ -43,12 +43,25 @@
 </template>
 
 <script>
-import BaseAlert from "../components/BaseAlert";
-import BaseButton from "../components/BaseButton";
+import BaseAlert from "@/components/BaseAlert";
+import BaseButton from "@/components/BaseButton";
 import api from '@/services/api';
 export default {
+    created(){
+        var req = {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem('token')
+            }
+        }
+        api.get("/user",req).then(res => {
+            this.users = res.data;
+        }).catch(err => {
+            this.$router.push({name: 'nopermission'});
+        })
+    },
     data(){
         return {
+            users: [],
             name: '',
             password: '',
             email: '',
@@ -75,7 +88,12 @@ export default {
     },
     methods: {
         register(){
-            api.post("/user",{
+            var req = {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem('token')
+            }
+        }
+            api.post("/user", req, {
                 nome: this.name,
                 senha: this.password,
                 nascimento: this.dataNascimento,

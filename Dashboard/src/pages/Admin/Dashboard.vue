@@ -42,7 +42,7 @@
                     <div class="card-header">Usuários</div>
                     <div class="card-body">
                         <p class="card-text">Cadastrar um novo usuário.</p>
-                        <a href="#/register"><base-button type="success"><i class="tim-icons icon-single-02"></i> Usuário</base-button></a>
+                        <a href="#/admin/register"><base-button type="success"><i class="tim-icons icon-single-02"></i> Usuário</base-button></a>
                     </div>
                 </div>
             </div>

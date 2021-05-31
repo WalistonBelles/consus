@@ -37,7 +37,8 @@
 <script>
 import api from '@/services/api';
 
-export default {created(){
+export default {
+    created(){
         var req = {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem('token')

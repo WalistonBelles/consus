@@ -35,7 +35,6 @@ router.post("/changepassword", UserController.changePassword);
 
 // Área de Funcionário
 router.get('/confirmEmployee', EmployeeAuth, DoctorController.index);
-router.post('/user', UserController.create);
 router.post('/patient', PatientController.create);
 router.post("/adress", AdressController.create);
 router.post("/consultationhistory", ConsultationHistory.create);
@@ -54,6 +53,7 @@ router.put("/query", QueryController.edit);
 
 // Área de Administrador
 router.get("/user", AdminAuth, UserController.index);
+router.post('/user', AdminAuth, UserController.create);
 router.get("/user/:id", AdminAuth, UserController.findUser);
 router.get("/patient/:id", AdminAuth, PatientController.findUser);
 router.get("/specialty", SpecialtyController.index);

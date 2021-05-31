@@ -53,8 +53,22 @@ import BaseButton from "../../components/BaseButton";
 import BaseTable from "../../components/BaseTable";
 import api from '@/services/api';
 export default {
+    created(){
+        var req = {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem('token')
+            }
+        }
+        api.get("/confirmEmployee",req).then(res => {
+            this.users = res.data;
+        }).catch(err => {
+            console.log(err);
+            this.$router.push({name: 'nopermission'});
+        })
+    },
     data(){
         return {
+            users: [],
             querys: [],
             cpf: '',
             error: undefined,
