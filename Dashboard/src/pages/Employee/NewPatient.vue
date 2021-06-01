@@ -28,8 +28,8 @@
                                 <option>Estados Unidos</option>
                             </select>
                     </base-input>
-                    <base-input class="col-md-3" type="text" label="Cidade" placeholder="Cidade" v-model="cidade"/>
-                    <base-input class="col-md-3" type="text" label="CEP" placeholder="CEP" v-model="cep"/>
+                    <base-input class="col-md-3" type="text" label="CEP" placeholder="CEP" v-model="cep" @change="cepz()"/>
+                    <base-input class="col-md-3" type="text" label="Cidade" placeholder="Cidade" v-model="cidade" />
                     <base-input class="col-md-3" type="text" label="Rua" placeholder="Rua" v-model="rua"/>
                     <base-input class="col-md-4" type="text" label="Bairro" placeholder="Bairro" v-model="bairro"/>
                     <base-input class="col-md-4" type="text" label="Número" placeholder="Número" v-model="numero"/>
@@ -45,6 +45,7 @@
 import BaseAlert from "@/components/BaseAlert";
 import BaseButton from "@/components/BaseButton";
 import api from '@/services/api';
+import axios from 'axios';
 export default {
     created(){
         var req = {
@@ -62,6 +63,7 @@ export default {
     data(){
         return {
             users: [],
+            ceps: [],
             name: '',
             email: '',
             dataNascimento: '', 
@@ -109,6 +111,13 @@ export default {
                 console.log(this.dataNascimento);
                 var msgErro = err.response.data.err;
                 this.error = msgErro;
+            })
+        },
+        cepz(){
+            axios.get("https://viacep.com.br/ws/" + this.cep + "/json/")
+            .then(res => {
+                this.cidade = res.data.localidade;
+            }).catch(err => {
             })
         }
     }
