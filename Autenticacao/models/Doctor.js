@@ -65,6 +65,22 @@ class Doctor {
             return undefined;
         }
     }
+    // Busca no banco o médico baseado no seu id de usuário
+    async findByID(id){
+        try{
+            var result = await knex.select(["id","crm"]).where({id_usuario:id}).table("medico");
+            
+            if(result.length > 0){
+                return result[0];
+            }else{
+                return undefined;
+            }
+
+        }catch(err){
+            console.log(err);
+            return undefined;
+        }
+    }
 }
 
 module.exports = new Doctor();

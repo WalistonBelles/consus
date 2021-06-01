@@ -21,6 +21,33 @@
                     <div class="card-footer"><a href="#/doctor/answerInquiry"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Consultas</base-button></a></div>
                 </div>
             </div>
+            <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-header">Próximas 5 Consultas</div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Data</th>
+                            <th scope="col" class="text-center">Status</th>
+                            <th scope="col" class="text-center">Operações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="consult in consults" :key="consult.id">
+                            <td>{{consult.unome}}</td>
+                            <td>{{consult.data}}</td>
+                            <td class="text-center"><p class="text-danger">{{consult.atendida}}</p></td>
+                            <td class="text-center">
+                                <router-link :to="{name: 'tomeet', params:{id: consult.conid, paciente_id: consult.pacid, unidade_id: consult.unid, medico_id: consult.medid}}">
+                                    <base-button simple type="primary">Atender</base-button>
+                                </router-link>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         </div>
     </div>    
 </template>
@@ -30,6 +57,14 @@ import api from '@/services/api';
 
 export default {
     created(){
+        api.post("/doctorsConsults", {
+            token: localStorage.getItem('token')
+        }).then(res => {
+            this.consults = res.data;
+        }).catch(err => {
+            var msgErro = err.response.data.err;
+            this.error = msgErro;
+        })
         var req = {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem('token')
@@ -45,6 +80,7 @@ export default {
     data(){
         return {
             users: [],
+            consults: [],
             error: undefined,
         }
     }

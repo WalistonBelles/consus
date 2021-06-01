@@ -47,6 +47,7 @@ router.get("/exam", ExamController.index);
 
 // Área de Médico
 router.get('/confirmDoctor', DoctorAuth, DoctorController.index);
+router.post('/doctorsConsults', DoctorController.listAllConsults);
 router.post("/answerInquiry", QueryController.index);
 router.get("/querys", QueryController.indexConsultas);
 router.put("/query", QueryController.edit);

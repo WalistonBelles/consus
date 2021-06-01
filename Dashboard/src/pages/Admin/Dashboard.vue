@@ -126,21 +126,21 @@ export default {
         }
         api.get("/user",req).then(res => {
             this.users = res.data;
-        }).catch(err => {
-            this.$router.push({name: 'nopermission'});
-        })
-        api.get("/doctor",req).then(res => {
-            this.doctors = res.data;
-        }).catch(err => {
-            this.$router.push({name: 'nopermission'});
-        })
-        api.get("/consultationhistory",req).then(res => {
-            this.schedules = res.data;
-        }).catch(err => {
-            this.$router.push({name: 'nopermission'});
-        })
-        api.get("/querys",req).then(res => {
-            this.querys = res.data;
+            api.get("/doctor",req).then(res => {
+                this.doctors = res.data;
+                api.get("/consultationhistory",req).then(res => {
+                    this.schedules = res.data;
+                    api.get("/querys",req).then(res => {
+                        this.querys = res.data;
+                    }).catch(err => {
+                        this.$router.push({name: 'nopermission'});
+                    })
+                }).catch(err => {
+                    this.$router.push({name: 'nopermission'});
+                })
+            }).catch(err => {
+                this.$router.push({name: 'nopermission'});
+            })
         }).catch(err => {
             this.$router.push({name: 'nopermission'});
         })

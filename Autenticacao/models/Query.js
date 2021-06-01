@@ -11,7 +11,7 @@ class Query {
         }
     }
     // Retorna todos as consulta que precisam ser atendidas pelo Médico
-    async findAll(id_medico){
+    async findAll(id_medico, limit = 999){
         try{
             var result = await knex.
             select(["consulta.id as conid", "unidade solicitante.nome", "consulta.id_Unidade as unid", "consulta.id_Medico as medid", "paciente.nome as unome", "consulta.id_Paciente as pacid", "medico.id_usuario", "consulta.data", "consulta.atendida"])
@@ -23,7 +23,8 @@ class Query {
             .as('unidade solicitante')
             .as('medico')
             .as('consulta')
-            .table("consulta");
+            .table("consulta")
+            .limit(limit);
             return result;
         }catch(err){
             console.log(err);

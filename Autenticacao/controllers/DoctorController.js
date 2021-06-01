@@ -1,12 +1,47 @@
+var jwt = require("jsonwebtoken");
+var secret = "adsuasgdhjasgdhjdgahjsg12hj3eg12hj3g12hj3g12hj3g123";
+
 var Doctor = require("../models/Doctor");
 var Specialty = require("../models/Specialty");
 var User = require("../models/User");
+var Query = require("../models/Query");
 
 class DoctorController{
     async index(req, res){
         var doctors = await Doctor.findAll();
         res.json(doctors);
     }
+
+    async listAllConsults(req, res){
+        var {token} = req.body;
+        if(token != undefined){
+            try{
+                var decoded = jwt.verify(token,secret);
+                var medicoID = await Doctor.findByID(decoded.id)
+                var resultado = await Query.findAll(medicoID.id, 5);
+                var resultado1 = resultado.map( function( i ) {
+                    if (i.atendida == 0){
+                        i.atendida = 'Pendente';
+                        return i.atentida;
+                    }
+                    else {
+                        i.atendida = 'Atendida';
+                        return i.atendida;
+                    }
+                });
+                res.json(resultado);
+            }catch(err){
+                res.status(403);
+                res.send("Você não está autenticado");
+                return;
+            }
+        }else{
+            res.status(403);
+            res.send("Você não está autenticado");
+            return;
+        }
+    }
+
     async create(req, res){
         var {crm, especialidade, cpf} = req.body;
 
