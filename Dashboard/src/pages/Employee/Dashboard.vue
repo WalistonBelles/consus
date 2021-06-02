@@ -30,6 +30,15 @@
                     <div class="card-footer"><a href="#/employee/schedule"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Agenda</base-button></a></div>
                 </div>
             </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-header">Consults</div>
+                    <div class="card-body">
+                        <p class="card-text">Consults</p>
+                    </div>
+                    <div class="card-footer"><a href="#/consults"><base-button type="success"><i class="tim-icons icon-simple-add"></i> Consults</base-button></a></div>
+                </div>
+            </div>
         </div>
     </div>    
 </template>

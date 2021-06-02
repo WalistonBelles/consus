@@ -44,6 +44,7 @@ router.post("/query", QueryController.create);
 router.get("/requestingUnit", RequestingUnitController.index);
 router.post("/performerUnit", PerformerUnitController.findUnit);
 router.get("/exam", ExamController.index);
+router.post("/consultas", ScheduleController.findAllConsultas);
 
 // Área de Médico
 router.get('/confirmDoctor', DoctorAuth, DoctorController.index);

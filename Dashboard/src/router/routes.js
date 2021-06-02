@@ -25,6 +25,8 @@ const NewPatient = () => import("@/pages/Employee/NewPatient.vue");
 const Profile = () => import("@/pages/Profile.vue");
 const Login = () => import("@/pages/Login.vue");
 const NoPermission = () => import("@/pages/NoPermission.vue");
+const Consults = () => import("@/pages/Consults.vue");
+const AgendarConsulta = () => import("@/pages/AgendarConsulta.vue");
 
 const routes = [
   {
@@ -111,6 +113,16 @@ const routes = [
         path: "nopermission",
         name: "nopermission",
         component: NoPermission
+      },
+      {
+        path: "consults",
+        name: "consults",
+        component: Consults
+      },
+      {
+        path: "agendarconsulta",
+        name: "agendarconsulta",
+        component: AgendarConsulta
       },
     ]
   },

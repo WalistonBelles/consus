@@ -2,8 +2,48 @@ var Schedule = require("../models/Schedule");
 var Doctor = require("../models/Doctor");
 var User = require("../models/User");
 var RequestingUnit = require("../models/RequestingUnit");
+var axios = require('axios');
 
 class ScheduleController{
+
+    async findAllConsultas(req, res){
+        var {ano, mes, dia, hora, minuto} = req.body;
+        if (ano == undefined || ano == '' || ano == ' '){
+            res.status(400);
+            res.json({err: "Ano inválido!"});
+            return;
+        }
+        if (mes == undefined || mes == '' || mes == ' '){
+            res.status(400);
+            res.json({err: "Mês inválido!"});
+            return;
+        }
+        if (dia == undefined || dia == '' || dia == ' '){
+            res.status(400);
+            res.json({err: "Dia inválido!"});
+            return;
+        }
+        if (hora == undefined || hora == '' || hora == ' '){
+            res.status(400);
+            res.json({err: "Horário Inválido inválido!"});
+            return;
+        }
+        if (minuto == undefined || minuto == '' || minuto == ' '){
+            res.status(400);
+            res.json({err: "Minuto Inválido inválido!"});
+            return;
+        }
+        axios.post('http://localhost:8080/book?year='+ano+'&month='+mes+'&day='+dia+'&hour='+hora+'&minute='+minuto)
+        .then(res => {
+        }).catch(err => {
+            res.status(400);
+            res.json({err: err});
+            return;
+        })
+        res.status(200);
+        res.send("Agendado!");
+    }
+
     async create(req, res){
         var {dataDeRegistro, crm, cpf_paciente, nome_unidade} = req.body;
         if (crm == undefined || crm == '' || crm == ' '){
